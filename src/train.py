@@ -55,7 +55,7 @@ class Trainer:
         model = get_model(self.ret)
 
         # tensorboard history logger
-        tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=0, update_freq="batch")
+        tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=1, update_freq="batch")
 
         # early stopping
         early = EarlyStopping(patience=self.ret.patience, verbose=1)
