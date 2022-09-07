@@ -20,7 +20,7 @@ def get_model(ret):
         x = Dense(nb_classes, activation="softmax")(x)  # @TODO: Y U NO SOFTMAX?
         return Model(inputs=inputs, outputs=x)
 
-    elif ret.arch == "transformer":
+    elif ret.arch == "vit":
         inputs = Input(shape=(50, 3))
         x = inputs
         for _ in range(4):

@@ -17,7 +17,7 @@ def main():
                         help="number of epochs to train.")
     parser.add_argument('--patience', metavar='--pa', type=int, nargs='?', default=10,
                         help="number of epochs to wait (patience) for early stopping.")
-    parser.add_argument('--arch', metavar='--a', type=str, nargs='?', default="rnn",
+    parser.add_argument('--arch', metavar='--a', type=str, nargs='?', default="vit",
                         help="which architecture to use.")
     ret = parser.parse_known_args(sys.argv[1:])[0]
 
