@@ -1,54 +1,37 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
-from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
+from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping
 from .models import get_model
 import numpy as np
-
-
-def preprocess(x_, y_):
-    #X = list(x_)
-    #Y = list(y_)
-    #out = []
-    #for key_ in keys_:
-    #    tmp = X[key_]
-    #    out.append(tmp.numpy())
-    #X = np.stack(out, axis=1)
-
-    # onehot GT
-    y_ = tf.one_hot(y_, depth=20)  # nb_classes=20
-
-    return x_, y_
-
-
-def merge_and_pad(x):
-    maxlen = 50
-    keys_ = ['accel_x', 'accel_y', 'accel_z']
-    out = []
-    for key_ in keys_:
-        tmp = x[key_]
-        out.append(tmp)
-    out = tf.concat(out, axis=1)
-    return tf.pad(out, [[0, maxlen - tf.shape(out)[0]], [0, 0]])
 
 
 class Trainer:
     def __init__(self, ret):
         self.ret = ret
         self.history_path = "output/history/"
-        self.model_path = "output/history/"
+        self.model_path = "output/models/"
         self.name = "gesture_classifier_arch_" + ret.arch
         self.nb_classes = 20
+        self.maxlen = 50
+        self.feature_names = ['accel_x', 'accel_y', 'accel_z']
 
     def setup_dataset(self, dataset):
         dataset = dataset.map(lambda x, y: ({elem: tf.expand_dims(x[elem], axis=-1) for elem in x},
                                             tf.one_hot(y, depth=self.nb_classes, axis=0)))
         return dataset.map(lambda x, y: (merge_and_pad(x), y))
 
+    def merge_and_pad(self, x):
+        out = []
+        for key_ in self.feature_names:
+            tmp = x[key_]
+            out.append(tmp)
+        out = tf.concat(out, axis=1)
+        return tf.pad(out, [[0, self.maxlen - tf.shape(out)[0]], [0, 0]])
+
     def fit(self):
-        train, test, val = tfds.load('smartwatch_gestures', split=['train[:80%]', 'train[80%:95%]', 'train[95%:]'],
+        train, test, val = tfds.load('smartwatch_gestures', split=['train[:70%]', 'train[70%:85%]', 'train[85%:]'],
                                      as_supervised=True, shuffle_files=True)
 
-        print(train)
         N_train = len(list(train))
         N_val = len(list(val))
 
@@ -58,8 +41,11 @@ class Trainer:
         train = train.shuffle(buffer_size=4).batch(self.ret.batch_size).repeat(-1)
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).repeat(-1)
 
+        # define architecture
         model = get_model(self.ret)
-        print(model.summary())
+
+        # early stopping
+        early = EarlyStopping(patience=self.ret.patience, verbose=1)
 
         # setup history logger
         history = CSVLogger(
@@ -92,7 +78,7 @@ class Trainer:
             epochs=self.ret.epochs,
             validation_data=val,
             validation_steps=N_val // self.ret.batch_size,
-            callbacks=[save_best, history],
+            callbacks=[save_best, history, early],
             verbose=1,
         )
 
