@@ -8,10 +8,10 @@ import numpy as np
 class Trainer:
     def __init__(self, ret):
         self.ret = ret
+        self.name = "gesture_classifier_arch_" + ret.arch
         self.history_path = "output/history/"
         self.model_path = "output/models/"
-        self.dataset_path = "output/datasets/"
-        self.name = "gesture_classifier_arch_" + ret.arch
+        self.dataset_path = "output/datasets/" + self.name + "/"
         self.nb_classes = 20
         self.maxlen = 50
         self.feature_names = ['accel_x', 'accel_y', 'accel_z']
@@ -46,7 +46,7 @@ class Trainer:
         # save datasets on disk
         self.save_datasets(train, "train")
         self.save_datasets(val, "val")
-        self.save_datasets(train, "test")
+        self.save_datasets(test, "test")
 
         train = train.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
@@ -55,7 +55,7 @@ class Trainer:
         model = get_model(self.ret)
 
         # tensorboard history logger
-        tb_logger = TensorBoard(log_dir="output/logs", histogram_freq=1, update_freq="epoch")
+        tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=1, update_freq="batch")
 
         # early stopping
         early = EarlyStopping(patience=self.ret.patience, verbose=1)
@@ -94,4 +94,12 @@ class Trainer:
             callbacks=[save_best, history, early, tb_logger],
             verbose=1,
         )
+
+    def predict(self, x):
+        pass
+
+    def eval(self, model_name):
+        dataset = tf.data.Dataset.load(self.dataset_path + "test/")
+        print(dataset)
+
 
