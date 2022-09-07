@@ -9,11 +9,19 @@ def main():
                         help="which task to perform - either 'train' or 'eval'.")
     parser.add_argument('--verbose', metavar='--v', type=int, nargs='?', default=1,
                         help="sets the verbose level.")
-    parser.add_argument('--batch_size', metavar='--bs', type=int, nargs='?', default=512,
+    parser.add_argument('--batch_size', metavar='--bs', type=int, nargs='?', default=4,
                         help="set which batch size to use for training.")
-    parser.add_argument('--learning_rate', metavar='--lr', type=float, nargs='?', default=0.0003,
+    parser.add_argument('--learning_rate', metavar='--lr', type=float, nargs='?', default=0.001,
                         help="set which learning rate to use for training.")
+    parser.add_argument('--epochs', metavar='--ep', type=int, nargs='?', default=100,
+                        help="number of epochs to train.")
+    parser.add_argument('--arch', metavar='--a', type=str, nargs='?', default="mlp",
+                        help="which architecture to use.")
     ret = parser.parse_known_args(sys.argv[1:])[0]
+
+    # setup folders
+    os.makedirs("output/models/", exist_ok=True)
+    os.makedirs("output/history/", exist_ok=True)
 
     if ret.task == "train":
         from src.train import Trainer
