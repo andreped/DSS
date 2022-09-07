@@ -1,5 +1,6 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
+import tensorflow_addons as tfa
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping, TensorBoard
 from .models import get_model
 import numpy as np
@@ -81,7 +82,7 @@ class Trainer:
         model.compile(
             optimizer=tf.keras.optimizers.Adam(learning_rate=self.ret.learning_rate),
             loss="categorical_crossentropy",
-            metrics=["categorical_accuracy"],
+            metrics=["acc", tfa.metrics.F1Score(num_classes=self.nb_classes, average="macro")],
         )
 
         # train model
