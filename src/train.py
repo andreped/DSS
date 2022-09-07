@@ -43,10 +43,10 @@ class Trainer:
         val = self.setup_dataset(val)
         test = self.setup_dataset(test)
 
-        # save datasets on disk
-        self.save_datasets(train, "train")
-        self.save_datasets(val, "val")
-        self.save_datasets(test, "test")
+        # save datasets on disk  @TODO: This takes extremely long!
+        # self.save_datasets(train, "train")
+        # self.save_datasets(val, "val")
+        # self.save_datasets(test, "test")
 
         train = train.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
@@ -55,7 +55,7 @@ class Trainer:
         model = get_model(self.ret)
 
         # tensorboard history logger
-        tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=1, update_freq="batch")
+        tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=0, update_freq="batch")
 
         # early stopping
         early = EarlyStopping(patience=self.ret.patience, verbose=1)

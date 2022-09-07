@@ -21,11 +21,12 @@ def main():
                         help="which architecture to use.")
     ret = parser.parse_known_args(sys.argv[1:])[0]
 
-    print("RET:", ret)
+    print(ret)
 
     # setup folders
     os.makedirs("output/models/", exist_ok=True)
     os.makedirs("output/history/", exist_ok=True)
+    os.makedirs("output/datasets/", exist_ok=True)
 
     if ret.task == "train":
         from src.train import Trainer
