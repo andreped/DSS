@@ -18,7 +18,7 @@ class Trainer:
     def setup_dataset(self, dataset):
         dataset = dataset.map(lambda x, y: ({elem: tf.expand_dims(x[elem], axis=-1) for elem in x},
                                             tf.one_hot(y, depth=self.nb_classes, axis=0)))
-        return dataset.map(lambda x, y: (merge_and_pad(x), y))
+        return dataset.map(lambda x, y: (self.merge_and_pad(x), y))
 
     def merge_and_pad(self, x):
         out = []
@@ -29,7 +29,7 @@ class Trainer:
         return tf.pad(out, [[0, self.maxlen - tf.shape(out)[0]], [0, 0]])
 
     def fit(self):
-        train, test, val = tfds.load('smartwatch_gestures', split=['train[:70%]', 'train[70%:85%]', 'train[85%:]'],
+        train, test, val = tfds.load('smartwatch_gestures', split=['train[:80%]', 'train[80%:90%]', 'train[90%:]'],
                                      as_supervised=True, shuffle_files=True)
 
         N_train = len(list(train))
