@@ -64,3 +64,6 @@ FeaturesDict({
 Human activity smart devices (lots of data, but no labels):
 https://www.kaggle.com/datasets/sasanj/human-activity-smart-devices?select=smartwatch.csv
 
+Dataset from UiT (for research):
+https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/6ZWC9Z
+
