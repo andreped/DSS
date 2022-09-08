@@ -36,6 +36,7 @@ Example of training history for Vision Transformer can be seen underneath:
 <img src="assets/RNN_training_curve.png">
 
 The figure shows macro-averaged F1-score for each step during training, with black curve for training and blue curve for validation sets.
+Best model reached a macro-averaged F1 score of 99.66 % on the validation set, across all 20 classes.
 
 ### Feature structure
 
