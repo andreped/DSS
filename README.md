@@ -28,12 +28,12 @@ The script supports multiple arguments. To see supported arguments, run `python 
 
 To visualize training history, use TensorBoard (with example):
 ```
-tensorboard --logdir .\output\logs\gesture_classifier_arch_vit
+tensorboard --logdir .\output\logs\gesture_classifier_arch_rnn
 ```
 
 Example of training history for Vision Transformer can be seen underneath:
 
-<img src="assets/ViT_training_curve.png">
+<img src="assets/RNN_training_curve.png">
 
 The figure shows macro-averaged F1-score for each step during training, with black curve for training and blue curve for validation sets.
 
