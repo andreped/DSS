@@ -58,3 +58,9 @@ FeaturesDict({
     'participant': tf.uint8,
 })
 ```
+
+## Other datasets
+
+Human activity smart devices (lots of data, but no labels):
+https://www.kaggle.com/datasets/sasanj/human-activity-smart-devices?select=smartwatch.csv
+
