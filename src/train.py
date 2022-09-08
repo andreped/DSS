@@ -82,10 +82,10 @@ class Trainer:
         # define loss
         if ret.loss == "cce":
             loss_ = "categorical_crossentropy"
-        elif ret.loss == "f1":
+        elif ret.loss == "focal":
             loss_ = categorical_focal_loss()
         else:
-            raise ValueError("Unknown loss function specified. Supported losses are: {'cce', 'f1'}.")
+            raise ValueError("Unknown loss function specified. Supported losses are: {'cce', 'focal'}.")
 
         # compile model (define optimizer, losses, metrics)
         model.compile(
