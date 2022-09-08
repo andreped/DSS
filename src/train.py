@@ -45,9 +45,9 @@ class Trainer:
         test = self.setup_dataset(test)
 
         # save datasets on disk  @TODO: This takes extremely long!
-        # self.save_datasets(train, "train")
-        # self.save_datasets(val, "val")
-        # self.save_datasets(test, "test")
+        #self.save_datasets(train, "train")
+        #self.save_datasets(val, "val")
+        #self.save_datasets(test, "test")
 
         train = train.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
