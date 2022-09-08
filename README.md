@@ -24,12 +24,12 @@ python main.py
 
 The script supports multiple arguments. To see supported arguments, run `python main.py -h`.
 
+### Training history
+
 To visualize training history, use TensorBoard (with example):
 ```
 tensorboard --logdir .\output\logs\gesture_classifier_arch_vit
 ```
-
-### Training history
 
 Example of training history for Vision Transformer can be seen underneath:
 
