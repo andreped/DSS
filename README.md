@@ -64,6 +64,12 @@ FeaturesDict({
 Human activity smart devices (lots of data, but no labels):
 https://www.kaggle.com/datasets/sasanj/human-activity-smart-devices?select=smartwatch.csv
 
-Dataset from UiT (for research):
+Dataset from UiT (only info on devices, no activity data):
 https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/6ZWC9Z
+
+Large database including lots of timeseries benchmark datasets:
+https://archive.ics.uci.edu/ml/datasets.php?format=&task=&att=&area=&numAtt=&numIns=&type=ts&sort=nameDown&view=list
+
+Dataset for gesture classification using MYO thalmic bracelet:
+https://archive.ics.uci.edu/ml/datasets/EMG+data+for+gestures#
 
