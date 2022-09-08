@@ -1,6 +1,13 @@
-# DSWS
+<div align="center">
+<h1 align="center">DSWS</h1>
+<h3 align="center">Framework for training deep models for sensor interaction</h3>
+ 
+**DSWS** was developed by SINTEF Health with aim to integrate state-of-the-art methods into Smart Watch sensor systems.
+</div>
+
 
 ### Setup
+
 When using this framework, it is a good idea to setup a virtual environment:
 ```
 virtualenv -ppython3 venv --clear
@@ -9,6 +16,7 @@ pip install -r requirements.txt
 ```
 
 ### Usage
+
 To train a model, simply run:
 ```
 python main.py
@@ -20,6 +28,14 @@ To visualize training history, use TensorBoard (with example):
 ```
 tensorboard --logdir .\output\logs\gesture_classifier_arch_vit
 ```
+
+### Training history
+
+Example of training history for Vision Transformer can be seen underneath:
+
+<img src="assets/ViT_training_curve.png">
+
+The figure shows macro-averaged F1-score for each step during training, with black curve for training and blue curve for validation sets.
 
 ### Feature structure
 
