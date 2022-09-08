@@ -1,5 +1,5 @@
 <div align="center">
-<h1 align="center">DSWS</h1>
+<h1 align="center">DSWS: Deep Smart Watch Sensors</h1>
 <h3 align="center">Framework for training deep models for sensor interaction</h3>
  
 **DSWS** was developed by SINTEF Health with aim to integrate state-of-the-art methods into Smart Watch sensor systems.
