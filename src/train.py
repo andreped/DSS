@@ -4,6 +4,7 @@ import tensorflow_addons as tfa
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping, TensorBoard
 from .models import get_model
 import numpy as np
+from losses import categorical_focal_loss
 
 
 class Trainer:
@@ -78,10 +79,18 @@ class Trainer:
             save_freq="epoch"
         )
 
+        # define loss
+        if ret.loss == "cce":
+            loss_ = "categorical_crossentropy"
+        elif ret.loss == "f1":
+            loss_ = categorical_focal_loss()
+        else:
+            raise ValueError("Unknown loss function specified. Supported losses are: {'cce', 'f1'}.")
+
         # compile model (define optimizer, losses, metrics)
         model.compile(
             optimizer=tf.keras.optimizers.Adam(learning_rate=self.ret.learning_rate),
-            loss="categorical_crossentropy",
+            loss=loss_,
             metrics=["acc", tfa.metrics.F1Score(num_classes=self.nb_classes, average="macro")],
         )
 

@@ -19,6 +19,8 @@ def main():
                         help="number of epochs to wait (patience) for early stopping.")
     parser.add_argument('--arch', metavar='--a', type=str, nargs='?', default="vit",
                         help="which architecture to use.")
+    parser.add_argument('--loss', metavar='--ls', type=str, nargs='?', default="cce",
+                        help="which loss function to use - cce or f1.")
     ret = parser.parse_known_args(sys.argv[1:])[0]
 
     print(ret)
