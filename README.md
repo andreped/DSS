@@ -31,7 +31,7 @@ To visualize training history, use TensorBoard (with example):
 tensorboard --logdir .\output\logs\gesture_classifier_arch_rnn
 ```
 
-Example of training history for Vision Transformer can be seen underneath:
+Example of training history for a Recurrent Neural Network (RNN) can be seen underneath:
 
 <img src="assets/RNN_training_curve.png">
 
