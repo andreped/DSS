@@ -1,8 +1,12 @@
-name: Build APK and IPA
+name: Build APK
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -17,10 +21,11 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.4'
-      - run: flutter pub get
-      - run: flutter build apk --release
+      - run: |
+          cd sw_app/
+          flutter pub get
+          flutter build apk --release
 
-      - name: Upload APK
       - uses: actions/upload-artifact@v2
         with:
           name: release-apk
@@ -30,9 +35,9 @@ jobs:
       - name: Add package to release tag
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_name: andreped/DeepSWSensor
+          repo_name: andreped/sw_app
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           file_glob: true
-          tag: v0.1.0
+          tag: v1.0.0
           overwrite: true
