@@ -4,13 +4,15 @@ import tensorflow_addons as tfa
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping, TensorBoard
 from .models import get_model
 import numpy as np
-from losses import categorical_focal_loss
+from .losses import categorical_focal_loss
+from datetime import datetime, date
 
 
 class Trainer:
     def __init__(self, ret):
         self.ret = ret
-        self.name = "gesture_classifier_arch_" + ret.arch
+        date_time = self.get_datetime()
+        self.name = date_time[0] + "_" + date_time[1] + "_gesture_classifier_arch_" + ret.arch
         self.history_path = "output/history/"
         self.model_path = "output/models/"
         self.dataset_path = "output/datasets/" + self.name + "/"
@@ -33,6 +35,11 @@ class Trainer:
 
     def save_datasets(self, x, name):
         tf.data.Dataset.save(x, self.dataset_path + name + "/")
+
+    def get_datetime(self):
+        curr_date = "".join(date.today().strftime("%d/%m").split("/")) + date.today().strftime("%Y")[2:]
+        curr_time = "".join(str(datetime.now()).split(" ")[1].split(".")[0].split(":"))
+        return curr_date, curr_time
 
     def fit(self):
         train, test, val = tfds.load('smartwatch_gestures', split=['train[:80%]', 'train[80%:90%]', 'train[90%:]'],
@@ -80,9 +87,9 @@ class Trainer:
         )
 
         # define loss
-        if ret.loss == "cce":
+        if self.ret.loss == "cce":
             loss_ = "categorical_crossentropy"
-        elif ret.loss == "focal":
+        elif self.ret.loss == "focal":
             loss_ = categorical_focal_loss()
         else:
             raise ValueError("Unknown loss function specified. Supported losses are: {'cce', 'focal'}.")

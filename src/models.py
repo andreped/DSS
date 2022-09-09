@@ -24,12 +24,12 @@ def get_model(ret):
         inputs = Input(shape=(maxlen, 3))
         x = inputs
         for _ in range(4):
-            x = transformer_encoder(x, head_size=256, num_heads=4, ff_dim=4, dropout=0)
+            x = transformer_encoder(x, head_size=32, num_heads=4, ff_dim=4, dropout=0)
 
         x = GlobalAveragePooling1D(data_format="channels_first")(x)
-        for dim in [128]:
+        for dim in [32]:
             x = Dense(dim, activation="relu")(x)
-            x = Dropout(0.4)(x)
+            x = Dropout(rate=0.5)(x)
         outputs = Dense(nb_classes, activation="softmax")(x)
         return Model(inputs, outputs)
 
