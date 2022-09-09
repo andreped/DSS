@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("Accelerometer Sensor in Flutter"),
+        title: const Text("DSWS: Demo app"),
         backgroundColor: Colors.redAccent,
       ),
       body: Container(
@@ -97,12 +97,11 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.all(30),
           child: Column(
               children:[
-                Text(direction, style: const TextStyle(fontSize: 30),),
                 const Text("Accelerometer data:", style: TextStyle(fontSize: 30),),
                 Text("x: " + x.toString(), style: const TextStyle(fontSize: 30),),
                 Text("y: " + y.toString(), style: const TextStyle(fontSize: 30),),
                 Text("z: " + z.toString(), style: const TextStyle(fontSize: 30),),
-                Text("Class pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
+                Text("\nClass pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
               ]
           )
       ),
