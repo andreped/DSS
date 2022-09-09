@@ -17,7 +17,7 @@ def get_model(ret):
         x = Dropout(rate=0.5)(x)
         x = Dense(32)(x)
         x = Activation("relu")(x)
-        x = Dense(nb_classes, activation="softmax")(x)  # @TODO: Y U NO SOFTMAX?
+        x = Dense(nb_classes, activation="softmax")(x)
         return Model(inputs=inputs, outputs=x)
 
     elif ret.arch == "vit":

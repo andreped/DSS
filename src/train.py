@@ -52,6 +52,10 @@ class Trainer:
         val = self.setup_dataset(val)
         test = self.setup_dataset(test)
 
+        for t in train:
+            print(t)
+            exit()
+
         # save datasets on disk  @TODO: This takes extremely long!
         #self.save_datasets(train, "train")
         #self.save_datasets(val, "val")
@@ -77,7 +81,7 @@ class Trainer:
 
         # model checkpoint to save best model only
         save_best = ModelCheckpoint(
-            self.model_path + "model_" + self.name,
+            self.model_path + "model_" + self.name + ".h5",
             monitor="val_loss",
             verbose=2,
             save_best_only=True,
@@ -98,7 +102,7 @@ class Trainer:
         model.compile(
             optimizer=tf.keras.optimizers.Adam(learning_rate=self.ret.learning_rate),
             loss=loss_,
-            metrics=["acc", tfa.metrics.F1Score(num_classes=self.nb_classes, average="macro")],
+            metrics=["acc"],  # , tfa.metrics.F1Score(num_classes=self.nb_classes, average="macro")],
         )
 
         # train model
