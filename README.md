@@ -42,6 +42,14 @@ Example of training history for a Recurrent Neural Network (RNN) can be seen und
 The figure shows macro-averaged F1-score for each step during training, with black curve for training and blue curve for validation sets.
 Best model reached a macro-averaged F1 score of 99.66 % on the validation set, across all 20 classes.
 
+## Mobile app
+
+A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
+
+<div align="center">
+<img src="sw_app/assets/app_snapshot.png" width="30%">
+</div>
+
 ## Feature structure
 
 I'm currently using the SmartWatch Gestures dataset,
