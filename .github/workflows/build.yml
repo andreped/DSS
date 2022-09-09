@@ -1,0 +1,40 @@
+name: Build APK and IPA
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.4'
+      - run: |
+          cd sw_app
+          flutter pub get
+          flutter build apk --release
+
+      - name: Upload APK
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+
+      - name: Add package to release tag
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_name: andreped/DeepSWSensor
+          file: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          file_glob: true
+          tag: v0.1.0
+          overwrite: true
