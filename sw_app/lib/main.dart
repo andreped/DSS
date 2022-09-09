@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
 
 
 Future<void> main() async {
@@ -23,26 +25,68 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
 
   double x = 0, y = 0, z = 0;
+  int class_pred = 0;
   String direction = "none";
+  int maxlen = 50;
+  int nb_features = 3;
+  var input = List<double>.filled(150, 0).reshape([1, 50, 3]);
+
+  final _modelFile = 'model.tflite';
+
+  // TensorFlow Lite Interpreter object
+  late Interpreter _interpreter;
+
+  void _loadModel() async {
+    // Creating the interpreter using Interpreter.fromAsset
+    _interpreter = await Interpreter.fromAsset(_modelFile);
+    print('Interpreter loaded successfully');
+  }
+
+  int argmax(List<dynamic> X) {
+    int idx = 0;
+    int l = X.length;
+    for (int i = 0; i < l; i++) {
+      idx = X[i] > X[idx] ? i : idx;
+    }
+    return idx;
+  }
 
   @override
   void initState() {
-    gyroscopeEvents.listen((GyroscopeEvent event) {
-      print(event);
+    // load model
+    _loadModel();
+
+    //gyroscopeEvents.listen((GyroscopeEvent event) {
+    accelerometerEvents.listen((AccelerometerEvent event) {
+      // print(event);
 
       x = event.x;
       y = event.y;
       z = event.z;
 
+      // add accelerator data to tensor and remove oldest sample
+      input[0].insert(0, [x, y, z]);
+      input[0].removeAt(maxlen);
+
+      // if output tensor shape [1,2] and type is float32
+      //var output = List.filled(1 * 2, 0).reshape([1, 2]);
+      var output = List<double>.filled(20, 0).reshape([1, 20]);
+
+      // The run method will run inference and
+      // store the resulting values in output.
+      _interpreter.run(input, output);
+
+      class_pred = argmax(output[0]);
+
       //rough calculation, you can use
-      //advance formula to calculate the orentation
-      if(x > 0){
+      //advance formula to calculate the orientation
+      if (x > 0) {
         direction = "back";
-      }else if(x < 0){
+      } else if (x < 0) {
         direction = "forward";
-      }else if(y > 0){
+      } else if (y > 0) {
         direction = "left";
-      }else if(y < 0){
+      } else if (y < 0) {
         direction = "right";
       }
 
@@ -57,15 +101,20 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Gyroscope Sensor in Flutter"),
+        title: const Text("Accelerometer Sensor in Flutter"),
         backgroundColor: Colors.redAccent,
       ),
       body: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
               children:[
-                Text(direction, style: TextStyle(fontSize: 30),)
+                Text(direction, style: const TextStyle(fontSize: 30),),
+                const Text("Accelerometer data:", style: TextStyle(fontSize: 30),),
+                Text("x: " + x.toString(), style: const TextStyle(fontSize: 30),),
+                Text("y: " + y.toString(), style: const TextStyle(fontSize: 30),),
+                Text("z: " + z.toString(), style: const TextStyle(fontSize: 30),),
+                Text("Class pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
               ]
           )
       ),
