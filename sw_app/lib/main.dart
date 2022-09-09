@@ -78,18 +78,6 @@ class _HomeState extends State<Home> {
 
       class_pred = argmax(output[0]);
 
-      //rough calculation, you can use
-      //advance formula to calculate the orientation
-      if (x > 0) {
-        direction = "back";
-      } else if (x < 0) {
-        direction = "forward";
-      } else if (y > 0) {
-        direction = "left";
-      } else if (y < 0) {
-        direction = "right";
-      }
-
       setState(() {
 
       });
