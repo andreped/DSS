@@ -33,7 +33,7 @@ class Trainer:
         out = tf.concat(out, axis=1)
         return out
 
-    def pad(self, dataset, value=-999):
+    def pad(self, dataset, value=0):
         return dataset.map(lambda x, y: (tf.pad(x, [[0, self.maxlen - tf.shape(x)[0]], [0, 0]],
                                                 mode='CONSTANT', constant_values=value),
                                          y))
@@ -54,6 +54,7 @@ class Trainer:
         return np.mean(tmp, axis=0), np.var(tmp, axis=0)
 
     def fit(self):
+        # get supervised data
         train, test, val = tfds.load('smartwatch_gestures', split=['train[:80%]', 'train[80%:90%]', 'train[90%:]'],
                                      as_supervised=True, shuffle_files=True)
 
