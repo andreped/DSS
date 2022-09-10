@@ -5,14 +5,14 @@ from tensorflow.keras.layers import Input, Dense, BatchNormalization, Dropout,\
 from .layers import transformer_encoder
 
 
-def get_model(ret):
+def get_model(ret, mu, var):
     nb_classes = 20
     maxlen = 50
     if ret.arch == "rnn":
         inputs = Input(shape=(maxlen, 3))
 
-        x = Masking(mask_value=0.0, input_shape=(maxlen, 3))(inputs)
-        # x = Normalization(axis=-1, mean=None, variance=None)(x)  # @TODO: Vector of nb_features for mean and variance
+        x = Normalization(axis=-1, mean=mu, variance=var, input_shape=(maxlen, 3))(inputs)  # @TODO: Vector of nb_features for mean and variance
+        x = Masking(mask_value=-999)(x)  # @TODO: ordinary 0.0 values can happen!
         x = LSTM(32)(x)
         x = Dropout(rate=0.5)(x)
         x = Dense(32)(x)

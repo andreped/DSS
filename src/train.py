@@ -23,15 +23,20 @@ class Trainer:
     def setup_dataset(self, dataset):
         dataset = dataset.map(lambda x, y: ({elem: tf.expand_dims(x[elem], axis=-1) for elem in x},
                                             tf.one_hot(y, depth=self.nb_classes, axis=0)))
-        return dataset.map(lambda x, y: (self.merge_and_pad(x), y))
+        return dataset.map(lambda x, y: (self.merge(x), y))
 
-    def merge_and_pad(self, x):
+    def merge(self, x):
         out = []
         for key_ in self.feature_names:
             tmp = x[key_]
             out.append(tmp)
         out = tf.concat(out, axis=1)
-        return tf.pad(out, [[0, self.maxlen - tf.shape(out)[0]], [0, 0]])
+        return out
+
+    def pad(self, dataset, value=-999):
+        return dataset.map(lambda x, y: (tf.pad(x, [[0, self.maxlen - tf.shape(x)[0]], [0, 0]],
+                                                mode='CONSTANT', constant_values=value),
+                                         y))
 
     def save_datasets(self, x, name):
         tf.data.Dataset.save(x, self.dataset_path + name + "/")
@@ -41,6 +46,13 @@ class Trainer:
         curr_time = "".join(str(datetime.now()).split(" ")[1].split(".")[0].split(":"))
         return curr_date, curr_time
 
+    def get_mu_and_var(self, dataset):
+        tmp = []
+        for x, y in dataset:
+            x = np.array(x)
+            tmp.extend(x)
+        return np.mean(tmp, axis=0), np.var(tmp, axis=0)
+
     def fit(self):
         train, test, val = tfds.load('smartwatch_gestures', split=['train[:80%]', 'train[80%:90%]', 'train[90%:]'],
                                      as_supervised=True, shuffle_files=True)
@@ -48,13 +60,18 @@ class Trainer:
         N_train = len(list(train))
         N_val = len(list(val))
 
+        # preprocess data
         train = self.setup_dataset(train)
         val = self.setup_dataset(val)
         test = self.setup_dataset(test)
 
-        for t in train:
-            print(t)
-            exit()
+        # get mu and std from train set, for each feature
+        mu, var = self.get_mu_and_var(train)
+
+        # pad all sequences to fixed maxlen
+        train = self.pad(train)
+        val = self.pad(val)
+        test = self.pad(test)
 
         # save datasets on disk  @TODO: This takes extremely long!
         #self.save_datasets(train, "train")
@@ -65,7 +82,7 @@ class Trainer:
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
 
         # define architecture
-        model = get_model(self.ret)
+        model = get_model(self.ret, mu=mu, var=var)
 
         # tensorboard history logger
         tb_logger = TensorBoard(log_dir="output/logs/" + self.name + "/", histogram_freq=1, update_freq="batch")
