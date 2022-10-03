@@ -98,8 +98,8 @@ class _HomeState extends State<Home> {
       // reset stopwatch
       stopwatch.reset();
 
+      // notify the framework that the internal state of this object has changed.
       setState(() {
-
       });
     });
     super.initState();
