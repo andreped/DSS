@@ -6,7 +6,7 @@
 ![CI](https://github.com/andreped/DSWS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSWS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSWS/releases)
  
-**DSWS** was developed by SINTEF Health with aim to integrate state-of-the-art methods into Smart Watch sensor systems.
+**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploing them in real time in a mobile app!
 </div>
 
 
@@ -18,6 +18,8 @@ virtualenv -ppython3 venv --clear
 ./venv/Scripts/activate
 pip install -r requirements.txt
 ```
+
+Tested with Python 3.7.9.
 
 ## Usage
 
@@ -41,6 +43,8 @@ Example of training history for a Recurrent Neural Network (RNN) can be seen und
 
 The figure shows macro-averaged F1-score for each step during training, with black curve for training and blue curve for validation sets.
 Best model reached a macro-averaged F1 score of 99.66 % on the validation set, across all 20 classes.
+
+**Disclaimer:** This model was only trained for testing purposes. The input features were stratified on sample-level and not patient-level, and thus validation performance will likely not represent true performance on new data. However, having a trained model enables us to test it in a Mobile app.
 
 ## Mobile app
 
