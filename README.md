@@ -19,6 +19,8 @@ virtualenv -ppython3 venv --clear
 pip install -r requirements.txt
 ```
 
+Tested with Python 3.7.9.
+
 ## Usage
 
 To train a model, simply run:
