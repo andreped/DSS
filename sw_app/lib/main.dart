@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:wakelock/wakelock.dart';
 import 'dart:math';
 
 
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget{
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    // disable the phone from going into sleep mode while app is running
+    Wakelock.enable();
     return MaterialApp(
       home: Home(),
     );
