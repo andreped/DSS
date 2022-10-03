@@ -114,20 +114,57 @@ class _HomeState extends State<Home> {
         title: const Text("DSWS: Demo app"),
         backgroundColor: Colors.redAccent,
       ),
-      body: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(30),
+      body: Center(
+          child: Container(
+            child: Padding(
+          padding: const EdgeInsets.all(14.0),
           child: Column(
-              children:[
-                const Text("Accelerometer data:", style: TextStyle(fontSize: 30),),
-                Text("x: " + x.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
-                Text("y: " + y.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
-                Text("z: " + z.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
-                Text("\nClass pred: " + classPred.toString(), style: const TextStyle(fontSize: 30),),
-                Text("\nFPS: " + fpsValue.toStringAsFixed(1), style: const TextStyle(fontSize: 30),),
-              ]
-          )
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+                width: 20,
+              ),
+              Container(
+                  //alignment: Alignment.center,
+                  //padding: const EdgeInsets.all(30),
+                  width: 380,
+                  //height: 250,
+                  child: Column(
+                      children:[
+                        const Text("\nAccelerometer data:", style: TextStyle(fontSize: 30, color: Colors.white),),
+                        Text("x: " + x.toStringAsFixed(4), style: const TextStyle(fontSize: 30, color: Colors.white),),
+                        Text("y: " + y.toStringAsFixed(4), style: const TextStyle(fontSize: 30, color: Colors.white),),
+                        Text("z: " + z.toStringAsFixed(4) + "\n", style: const TextStyle(fontSize: 30, color: Colors.white),),
+                      ]
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blueGrey
+                  ),
+              ),
+              SizedBox(
+                height: 20,
+                width: 20,
+              ),
+              Container(
+                width: 380,
+                //height: 200,
+                child: Column(
+                    children:[
+                      Text("\nClass pred: " + classPred.toString(), style: const TextStyle(fontSize: 30, color: Colors.white),),
+                      Text("\nFPS: " + fpsValue.toStringAsFixed(1) + "\n", style: const TextStyle(fontSize: 30, color: Colors.white),),
+                    ]
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black38
+                ), //BoxDecoration
+              ),
+            ],
+          ),
+        ),
       ),
+    ),
     );
   }
 }
