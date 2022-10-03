@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
+import 'dart:math';
 
 
 Future<void> main() async {
@@ -31,6 +32,13 @@ class _HomeState extends State<Home> {
   int nb_features = 3;
   var input = List<double>.filled(150, 0).reshape([1, 50, 3]);
 
+  // initialize FPS
+  double fpsValue = 0.0;
+  int count = 0;
+  double timer = 0.0;
+  double smoothing = 10;
+  double val = 0.0;
+
   final _modelFile = 'model.tflite';
 
   // TensorFlow Lite Interpreter object
@@ -56,10 +64,15 @@ class _HomeState extends State<Home> {
     // load model
     _loadModel();
 
+    // to track FPS
+    Stopwatch stopwatch = Stopwatch()..start();
+
     //gyroscopeEvents.listen((GyroscopeEvent event) {
     accelerometerEvents.listen((AccelerometerEvent event) {
-      // print(event);
+      // update counter - relevant for FPS counter
+      count++;
 
+      // get coordinates
       x = event.x;
       y = event.y;
       z = event.z;
@@ -77,6 +90,13 @@ class _HomeState extends State<Home> {
       _interpreter.run(input, output);
 
       class_pred = argmax(output[0]);
+
+      // exponential weighted moving average
+      fpsValue += (1.0 / (stopwatch.elapsedMilliseconds / 1000) - fpsValue) /
+          min(count, smoothing);
+
+      // reset stopwatch
+      stopwatch.reset();
 
       setState(() {
 
@@ -102,6 +122,7 @@ class _HomeState extends State<Home> {
                 Text("y: " + y.toString(), style: const TextStyle(fontSize: 30),),
                 Text("z: " + z.toString(), style: const TextStyle(fontSize: 30),),
                 Text("\nClass pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
+                Text("\nFPS: " + fpsValue.toStringAsFixed(1), style: const TextStyle(fontSize: 30),),
               ]
           )
       ),
