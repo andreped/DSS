@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'dart:math';
@@ -22,6 +23,11 @@ int argmax(List<dynamic> X) {
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    // force portrait mode
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       home: Home(),
     );
