@@ -6,7 +6,7 @@
 ![CI](https://github.com/andreped/DSWS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSWS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSWS/releases)
  
-**DSWS** was developed by SINTEF Health with aim to integrate state-of-the-art methods into Smart Watch sensor systems.
+**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploing them in real time in a mobile app!
 </div>
 
 
