@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
@@ -55,7 +56,9 @@ class _HomeState extends State<Home> {
   void _loadModel() async {
     // Creating the interpreter using Interpreter.fromAsset
     _interpreter = await Interpreter.fromAsset(_modelFile);
-    print('Interpreter loaded successfully');
+    if (kDebugMode) {
+      print('Interpreter loaded successfully');
+    }
   }
 
   @override
