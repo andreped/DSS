@@ -9,6 +9,15 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+int argmax(List<dynamic> X) {
+  int idx = 0;
+  int l = X.length;
+  for (int i = 0; i < l; i++) {
+    idx = X[i] > X[idx] ? i : idx;
+  }
+  return idx;
+}
+
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -48,15 +57,6 @@ class _HomeState extends State<Home> {
     // Creating the interpreter using Interpreter.fromAsset
     _interpreter = await Interpreter.fromAsset(_modelFile);
     print('Interpreter loaded successfully');
-  }
-
-  int argmax(List<dynamic> X) {
-    int idx = 0;
-    int l = X.length;
-    for (int i = 0; i < l; i++) {
-      idx = X[i] > X[idx] ? i : idx;
-    }
-    return idx;
   }
 
   @override
@@ -126,7 +126,6 @@ class _HomeState extends State<Home> {
               ]
           )
       ),
-
     );
   }
 }
