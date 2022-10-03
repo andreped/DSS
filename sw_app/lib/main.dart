@@ -118,9 +118,9 @@ class _HomeState extends State<Home> {
           child: Column(
               children:[
                 const Text("Accelerometer data:", style: TextStyle(fontSize: 30),),
-                Text("x: " + x.toString(), style: const TextStyle(fontSize: 30),),
-                Text("y: " + y.toString(), style: const TextStyle(fontSize: 30),),
-                Text("z: " + z.toString(), style: const TextStyle(fontSize: 30),),
+                Text("x: " + x.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
+                Text("y: " + y.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
+                Text("z: " + z.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
                 Text("\nClass pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
                 Text("\nFPS: " + fpsValue.toStringAsFixed(1), style: const TextStyle(fontSize: 30),),
               ]
