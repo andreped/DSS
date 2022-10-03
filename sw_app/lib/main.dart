@@ -48,6 +48,9 @@ class _HomeState extends State<Home> {
   double smoothing = 10;
   double val = 0.0;
 
+  // to track FPS
+  Stopwatch stopwatch = Stopwatch()..start();
+
   final _modelFile = 'model.tflite';
 
   // TensorFlow Lite Interpreter object
@@ -65,9 +68,6 @@ class _HomeState extends State<Home> {
   void initState() {
     // load model
     _loadModel();
-
-    // to track FPS
-    Stopwatch stopwatch = Stopwatch()..start();
 
     //gyroscopeEvents.listen((GyroscopeEvent event) {
     accelerometerEvents.listen((AccelerometerEvent event) {
