@@ -35,10 +35,9 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
 
   double x = 0, y = 0, z = 0;
-  int class_pred = 0;
+  int classPred = 0;
   String direction = "none";
-  int maxlen = 50;
-  int nb_features = 3;
+  int maxLen = 50;
   var input = List<double>.filled(150, 0).reshape([1, 50, 3]);
 
   // initialize FPS
@@ -79,7 +78,7 @@ class _HomeState extends State<Home> {
 
       // add accelerator data to tensor and remove oldest sample
       input[0].insert(0, [x, y, z]);
-      input[0].removeAt(maxlen);
+      input[0].removeAt(maxLen);
 
       // if output tensor shape [1,2] and type is float32
       //var output = List.filled(1 * 2, 0).reshape([1, 2]);
@@ -89,7 +88,7 @@ class _HomeState extends State<Home> {
       // store the resulting values in output.
       _interpreter.run(input, output);
 
-      class_pred = argmax(output[0]);
+      classPred = argmax(output[0]);
 
       // exponential weighted moving average
       fpsValue += (1.0 / (stopwatch.elapsedMilliseconds / 1000) - fpsValue) /
@@ -121,7 +120,7 @@ class _HomeState extends State<Home> {
                 Text("x: " + x.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
                 Text("y: " + y.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
                 Text("z: " + z.toStringAsFixed(4), style: const TextStyle(fontSize: 30),),
-                Text("\nClass pred: " + class_pred.toString(), style: const TextStyle(fontSize: 30),),
+                Text("\nClass pred: " + classPred.toString(), style: const TextStyle(fontSize: 30),),
                 Text("\nFPS: " + fpsValue.toStringAsFixed(1), style: const TextStyle(fontSize: 30),),
               ]
           )
