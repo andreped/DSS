@@ -11,6 +11,7 @@ def get_model(ret, mu=None, var=None):
     if ret.arch == "rnn":
         inputs = Input(shape=(maxlen, 3))
 
+        # disabled zero-mean normalization for now
         #x = Normalization(axis=-1, mean=mu, variance=var, input_shape=(maxlen, 3))(inputs)
         #x = Masking(mask_value=-999)(x)  # @TODO: ordinary 0.0 values can happen!
 
