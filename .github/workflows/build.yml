@@ -14,7 +14,6 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Build
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.4'
@@ -23,7 +22,6 @@ jobs:
           flutter pub get
           flutter build apk --release
 
-      - name: Upload
       - uses: actions/upload-artifact@v2
         with:
           name: release-apk
