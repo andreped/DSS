@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">DSWS: Deep Smart Watch Sensors</h1>
-<h3 align="center">Framework for training and deploying deep models for sensor systems</h3>
+<h3 align="center">Framework for training and deploying deep neural networks for sensor systems</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![CI](https://github.com/andreped/DSWS/workflows/Build%20APK/badge.svg)
