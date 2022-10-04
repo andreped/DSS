@@ -1,12 +1,12 @@
 <div align="center">
 <h1 align="center">DSWS: Deep Smart Watch Sensors</h1>
-<h3 align="center">Framework for training and deploying deep models for sensor systems</h3>
+<h3 align="center">Framework for training and deploying deep neural networks for sensor systems</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![CI](https://github.com/andreped/DSWS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSWS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSWS/releases)
  
-**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploying them in real time in a mobile app!
+**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploying them in a mobile app in real time!
 </div>
 
 
@@ -57,7 +57,7 @@ A simple Mobile app was developed in Flutter, which demonstrates the AI in actio
 ## Feature structure
 
 I'm currently using the SmartWatch Gestures dataset,
-which is available in tensorflow-datasets. The dataset has the
+which is available in [tensorflow-datasets](https://www.tensorflow.org/datasets/catalog/smartwatch_gestures). The dataset has the
 following structure:
 ```
 FeaturesDict({
@@ -75,17 +75,10 @@ FeaturesDict({
 })
 ```
 
-## Other datasets
+## Acknowledgements
 
-Human activity smart devices (lots of data, but no labels):
-https://www.kaggle.com/datasets/sasanj/human-activity-smart-devices?select=smartwatch.csv
+The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
-Dataset from UiT (only info on devices, no activity data):
-https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/6ZWC9Z
-
-Large database including lots of timeseries benchmark datasets:
-https://archive.ics.uci.edu/ml/datasets.php?format=&task=&att=&area=&numAtt=&numIns=&type=ts&sort=nameDown&view=list
-
-Dataset for gesture classification using MYO thalmic bracelet:
-https://archive.ics.uci.edu/ml/datasets/EMG+data+for+gestures#
+The mobile app was developed using Flutter, which is a programming language developed by Google.
+For the app, the following _open_ packages were used [flutter_sensors](https://pub.dev/packages/flutter_sensors), [tflite_flutter](https://pub.dev/packages/tflite_flutter), and [wakelock](https://pub.dev/packages/wakelock).
 
