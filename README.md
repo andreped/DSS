@@ -50,9 +50,9 @@ Best model reached a macro-averaged F1 score of 99.66 % on the validation set, a
 
 A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
 
-<div align="center">
-<img src="sw_app/assets/app_snapshot.png" width="30%">
-</div>
+<p align="center" width="100%">
+<img src="sw_app/assets/app_snapshot_data.jpg" width="20%" height="20%"> <img src="sw_app/assets/app_snapshot_charts.jpg" width="20%" height="20%">
+</p>
 
 ## Feature structure
 
