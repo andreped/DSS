@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
-import 'dart:math';
 import '../utils/math_addons.dart';
 
 
