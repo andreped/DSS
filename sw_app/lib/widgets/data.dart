@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import '../utils/math_addons.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'dart:math';
+import '../utils/constants.dart' as _constants;
 
 
 class DataStream extends StatefulWidget{
@@ -15,13 +14,11 @@ class DataStream extends StatefulWidget{
 }
 
 class _DataStreamState extends State<DataStream> {
-  final _modelFile = 'model.tflite';
   double x = 0,
       y = 0,
       z = 0;
   int classPred = 0;
   String direction = "none";
-  int maxLen = 50;
   var input = List<double>.filled(150, 0).reshape([1, 50, 3]);
 
   // initialize FPS
@@ -31,15 +28,7 @@ class _DataStreamState extends State<DataStream> {
   double smoothing = 0.1;
   double val = 0.0;
   int elapsedFrames = 0;
-
-  // chart plotter variables
-  final Color sinColor = Colors.redAccent;
-  final Color cosColor = Colors.blueAccent;
-  final limitCount = 100;
-  final sinPoints = <FlSpot>[];
-  final cosPoints = <FlSpot>[];
-  double xValue = 0;
-  double step = 0.05;
+  int xValue = 0;
 
   // to track FPS
   Stopwatch stopwatch = Stopwatch()..start();
@@ -51,7 +40,7 @@ class _DataStreamState extends State<DataStream> {
 
   void _loadModel() async {
     // Creating the interpreter using Interpreter.fromAsset
-    _interpreter = await Interpreter.fromAsset(_modelFile);
+    _interpreter = await Interpreter.fromAsset(_constants.modelFile);
     if (kDebugMode) {
       print('Interpreter loaded successfully');
     }
@@ -78,7 +67,7 @@ class _DataStreamState extends State<DataStream> {
 
         // add accelerator data to tensor and remove oldest sample
         input[0].insert(0, [x, y, z]);
-        input[0].removeAt(maxLen);
+        input[0].removeAt(_constants.maxLen);
 
         // initialize zeros list container to store result from interpreter
         var output = List<double>.filled(20, 0).reshape([1, 20]);
@@ -93,14 +82,6 @@ class _DataStreamState extends State<DataStream> {
         if (stopwatch.elapsedMilliseconds > 1000) {
           double currFreq = count / (stopwatch.elapsedMilliseconds / 1000);
           fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
-
-          // store result in history
-          while (sinPoints.length > limitCount) {
-            sinPoints.removeAt(0);
-            cosPoints.removeAt(0);
-          }
-          sinPoints.add(FlSpot(xValue, fpsValue));
-          cosPoints.add(FlSpot(xValue, fpsValue));
 
           // reset stopwatch
           stopwatch.reset();

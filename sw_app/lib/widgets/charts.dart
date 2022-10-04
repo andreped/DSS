@@ -6,6 +6,7 @@ import '../utils/math_addons.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math';
 import '../utils/datatypes.dart';
+import '../utils/constants.dart' as _constants;
 
 
 class Charts extends StatefulWidget{
@@ -34,11 +35,6 @@ class _HomeState extends State<Charts> {
   int elapsedFrames = 0;
 
   // chart plotter variables
-  final Color xColor = Colors.redAccent;
-  final Color yColor = Colors.blueAccent;
-  final Color zColor = Colors.greenAccent;
-  final Color fpsColor = Colors.deepPurpleAccent;
-  final limitCount = 100;
   final xPoints = <FlSpot>[];
   final yPoints = <FlSpot>[];
   final zPoints = <FlSpot>[];
@@ -106,7 +102,7 @@ class _HomeState extends State<Charts> {
           fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
 
           // store result in history
-          while ((fpsPoints.length > limitCount) && (fpsPoints.isNotEmpty)) {
+          while ((fpsPoints.length > _constants.limitCount) && (fpsPoints.isNotEmpty)) {
             xPoints.removeAt(0);
             yPoints.removeAt(0);
             zPoints.removeAt(0);
@@ -126,6 +122,33 @@ class _HomeState extends State<Charts> {
       });
     });
   }
+
+  SizedBox makeLineChart(List<FlSpot> points, Color currColor) {
+      return SizedBox(
+        width: 350,
+        height: 150,
+        child: LineChart(
+          LineChartData(
+            minY: points.map((abc) => abc.y).reduce(min),
+            maxY: points.map((abc) => abc.y).reduce(max),
+            minX: points.first.x,
+            maxX: points.last.x,
+            lineTouchData: LineTouchData(enabled: false),
+            clipData: FlClipData.all(),
+            gridData: FlGridData(
+              show: true,
+              drawVerticalLine: false,
+            ),
+            lineBarsData: [
+              historyLine(points, currColor),
+            ],
+            titlesData: FlTitlesData(
+              show: true,
+            ),
+          ),
+        ),
+      );
+    }
 
   @override
   void initState() {
@@ -154,17 +177,18 @@ class _HomeState extends State<Charts> {
                 width: double.infinity,
                 child: RichText(
                   textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: const TextStyle(
+                  text: const TextSpan(
+                    style: TextStyle(
                       fontSize: 20.0,
-                      color:Colors.black,
+                      color: Colors.black,
                     ),
                     children: <TextSpan>[
-                      const TextSpan(text: "Real time charts: "),
-                      TextSpan(text: 'x ', style: TextStyle(color: xColor)),
-                      TextSpan(text: 'y ', style: TextStyle(color: yColor)),
-                      TextSpan(text: 'z ', style: TextStyle(color: zColor)),
-                      TextSpan(text: 'FPS ', style: TextStyle(color: fpsColor)),
+                      TextSpan(text: "Real time charts: "),
+                      TextSpan(text: 'x ', style: TextStyle(color: _constants.xColor)),
+                      TextSpan(text: 'y ', style: TextStyle(color: _constants.yColor)),
+                      TextSpan(text: 'z ', style: TextStyle(color: _constants.zColor)),
+                      TextSpan(
+                          text: 'FPS ', style: TextStyle(color: _constants.fpsColor)),
                     ],
                   ),
                 ),
@@ -173,102 +197,10 @@ class _HomeState extends State<Charts> {
                 height: 10,
                 width: 20,
               ),
-              SizedBox(
-                width: 350,
-                height: 150,
-                child: LineChart(
-                  LineChartData(
-                    minY: xPoints.map((abc) => abc.y).reduce(min),
-                    maxY: xPoints.map((abc) => abc.y).reduce(max),
-                    minX: xPoints.first.x,
-                    maxX: xPoints.last.x,
-                    lineTouchData: LineTouchData(enabled: false),
-                    clipData: FlClipData.all(),
-                    gridData: FlGridData(
-                      show: true,
-                      drawVerticalLine: false,
-                    ),
-                    lineBarsData: [
-                      historyLine(xPoints, xColor),
-                    ],
-                    titlesData: FlTitlesData(
-                      show: true,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 350,
-                height: 150,
-                child: LineChart(
-                  LineChartData(
-                    minY: yPoints.map((abc) => abc.y).reduce(min),
-                    maxY: yPoints.map((abc) => abc.y).reduce(max),
-                    minX: yPoints.first.x,
-                    maxX: yPoints.last.x,
-                    lineTouchData: LineTouchData(enabled: false),
-                    clipData: FlClipData.all(),
-                    gridData: FlGridData(
-                      show: true,
-                      drawVerticalLine: false,
-                    ),
-                    lineBarsData: [
-                      historyLine(yPoints, yColor),
-                    ],
-                    titlesData: FlTitlesData(
-                      show: true,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 350,
-                height: 150,
-                child: LineChart(
-                  LineChartData(
-                    minY: zPoints.map((abc) => abc.y).reduce(min),
-                    maxY: zPoints.map((abc) => abc.y).reduce(max),
-                    minX: zPoints.first.x,
-                    maxX: zPoints.last.x,
-                    lineTouchData: LineTouchData(enabled: false),
-                    clipData: FlClipData.all(),
-                    gridData: FlGridData(
-                      show: true,
-                      drawVerticalLine: false,
-                    ),
-                    lineBarsData: [
-                      historyLine(zPoints, zColor),
-                    ],
-                    titlesData: FlTitlesData(
-                      show: true,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 350,
-                height: 150,
-                child: LineChart(
-                  LineChartData(
-                    minY: fpsPoints.map((abc) => abc.y).reduce(min),
-                    maxY: fpsPoints.map((abc) => abc.y).reduce(max),
-                    minX: fpsPoints.first.x,
-                    maxX: fpsPoints.last.x,
-                    lineTouchData: LineTouchData(enabled: false),
-                    clipData: FlClipData.all(),
-                    gridData: FlGridData(
-                      show: true,
-                      drawVerticalLine: false,
-                    ),
-                    lineBarsData: [
-                      historyLine(fpsPoints, fpsColor),
-                    ],
-                    titlesData: FlTitlesData(
-                      show: true,
-                    ),
-                  ),
-                ),
-              ),
+              makeLineChart(xPoints, _constants.xColor),
+              makeLineChart(yPoints, _constants.yColor),
+              makeLineChart(zPoints, _constants.zColor),
+              makeLineChart(fpsPoints, _constants.fpsColor),
             ],
           ),
     );
