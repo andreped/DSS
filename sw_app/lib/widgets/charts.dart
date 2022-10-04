@@ -5,6 +5,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 import '../utils/math_addons.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math';
+import '../utils/datatypes.dart';
 
 
 class Charts extends StatefulWidget{
@@ -270,22 +271,6 @@ class _HomeState extends State<Charts> {
               ),
             ],
           ),
-    );
-  }
-
-  LineChartBarData historyLine(List<FlSpot> points, Color color_) {
-    return LineChartBarData(
-      spots: points,
-      dotData: FlDotData(
-        show: false,
-      ),
-      gradient: LinearGradient(
-          colors: [color_.withOpacity(0), color_],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          stops: const [0.1, 1.0]),
-      barWidth: 4,
-      isCurved: false,
     );
   }
 }
