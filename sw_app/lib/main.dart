@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sensors_plus/sensors_plus.dart';
+//import 'package:sensors_plus/sensors_plus.dart';
+import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:wakelock/wakelock.dart';
 import 'dart:math';
@@ -44,6 +45,7 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home> {
 
+  final _modelFile = 'model.tflite';
   double x = 0, y = 0, z = 0;
   int classPred = 0;
   String direction = "none";
@@ -54,13 +56,11 @@ class _HomeState extends State<Home> {
   double fpsValue = 0.0;
   int count = 0;
   double timer = 0.0;
-  double smoothing = 10;
+  double smoothing = 0;
   double val = 0.0;
 
   // to track FPS
   Stopwatch stopwatch = Stopwatch()..start();
-
-  final _modelFile = 'model.tflite';
 
   // TensorFlow Lite Interpreter object
   late Interpreter _interpreter;
@@ -73,46 +73,56 @@ class _HomeState extends State<Home> {
     }
   }
 
+  void _run() async {
+    final _stream = await SensorManager().sensorUpdates(
+      sensorId: Sensors.ACCELEROMETER,
+      interval: Sensors.SENSOR_DELAY_GAME,
+    );
+
+    _stream.listen((sensorEvent) {
+      setState(() {
+        final _accelData = sensorEvent.data;
+
+        // update counter - relevant for FPS counter
+        count++;
+
+        // get coordinates
+        x = _accelData[0];
+        y = _accelData[1];
+        z = _accelData[2];
+
+        // add accelerator data to tensor and remove oldest sample
+        input[0].insert(0, [x, y, z]);
+        input[0].removeAt(maxLen);
+
+        // if output tensor shape [1,2] and type is float32
+        //var output = List.filled(1 * 2, 0).reshape([1, 2]);
+        var output = List<double>.filled(20, 0).reshape([1, 20]);
+
+        // The run method will run inference and
+        // store the resulting values in output.
+        _interpreter.run(input, output);
+
+        classPred = argmax(output[0]);
+
+        // exponential weighted moving average
+        fpsValue += (1.0 / (stopwatch.elapsedMilliseconds / 1000) - fpsValue) /
+            min(count, smoothing);
+
+        // reset stopwatch
+        stopwatch.reset();
+      });
+    });
+  }
+
   @override
   void initState() {
     // load model
     _loadModel();
 
-    //gyroscopeEvents.listen((GyroscopeEvent event) {
-    accelerometerEvents.listen((AccelerometerEvent event) {
-      // update counter - relevant for FPS counter
-      count++;
+    // run model using accelerometer data
+    _run();
 
-      // get coordinates
-      x = event.x;
-      y = event.y;
-      z = event.z;
-
-      // add accelerator data to tensor and remove oldest sample
-      input[0].insert(0, [x, y, z]);
-      input[0].removeAt(maxLen);
-
-      // if output tensor shape [1,2] and type is float32
-      //var output = List.filled(1 * 2, 0).reshape([1, 2]);
-      var output = List<double>.filled(20, 0).reshape([1, 20]);
-
-      // The run method will run inference and
-      // store the resulting values in output.
-      _interpreter.run(input, output);
-
-      classPred = argmax(output[0]);
-
-      // exponential weighted moving average
-      fpsValue += (1.0 / (stopwatch.elapsedMilliseconds / 1000) - fpsValue) /
-          min(count, smoothing);
-
-      // reset stopwatch
-      stopwatch.reset();
-
-      // notify the framework that the internal state of this object has changed.
-      setState(() {
-      });
-    });
     super.initState();
   }
 
