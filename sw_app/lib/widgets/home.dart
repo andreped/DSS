@@ -36,6 +36,8 @@ class _HomeState extends State<Home> {
   // TensorFlow Lite Interpreter object
   late Interpreter _interpreter;
 
+  late final _accelSubscription;
+
   void _loadModel() async {
     // Creating the interpreter using Interpreter.fromAsset
     _interpreter = await Interpreter.fromAsset(_modelFile);
@@ -50,7 +52,7 @@ class _HomeState extends State<Home> {
       interval: Sensors.SENSOR_DELAY_GAME,
     );
 
-    _stream.listen((sensorEvent) {
+    _accelSubscription = _stream.listen((sensorEvent) {
       setState(() {
         final _accelData = sensorEvent.data;
 
@@ -97,6 +99,9 @@ class _HomeState extends State<Home> {
 
     // run model using accelerometer data
     _run();
+
+    // @TODO: Need to add mechanism to close accelerometer listener when done
+    //_accelSubscription.cancel();
 
     super.initState();
   }
