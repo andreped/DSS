@@ -29,7 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sensors_plus: ^1.2.2
+  # sensors_plus: ^1.2.2  # <- this package has low and unstable FPS
+  flutter_sensors: ^1.0.1
   tflite_flutter : ^0.9.0
   wakelock: 0.6.2
 
