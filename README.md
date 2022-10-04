@@ -57,7 +57,7 @@ A simple Mobile app was developed in Flutter, which demonstrates the AI in actio
 ## Feature structure
 
 I'm currently using the SmartWatch Gestures dataset,
-which is available in tensorflow-datasets. The dataset has the
+which is available in [tensorflow-datasets](https://www.tensorflow.org/datasets/catalog/smartwatch_gestures). The dataset has the
 following structure:
 ```
 FeaturesDict({
