@@ -1,12 +1,12 @@
 <div align="center">
 <h1 align="center">DSWS: Deep Smart Watch Sensors</h1>
-<h3 align="center">Framework for training and deploying deep models for smart sensor systems</h3>
+<h3 align="center">Framework for training and deploying deep models for sensor systems</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![CI](https://github.com/andreped/DSWS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSWS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSWS/releases)
  
-**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploing them in real time in a mobile app!
+**DSWS** was developed by SINTEF Health with aim to integrate AIs into smart watch sensor systems. From training RNNs to deploying them in real time in a mobile app!
 </div>
 
 
