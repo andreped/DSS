@@ -94,5 +94,5 @@ https://archive.ics.uci.edu/ml/datasets/EMG+data+for+gestures#
 The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
 The mobile app was developed using Flutter, which is a programming language developed by Google.
-For the app, the following open packages were used [flutter_sensors](https://pub.dev/packages/flutter_sensors), [tflite_flutter](https://pub.dev/packages/tflite_flutter), and [wakelock](https://pub.dev/packages/wakelock).
+For the app, the following _open_ packages were used [flutter_sensors](https://pub.dev/packages/flutter_sensors), [tflite_flutter](https://pub.dev/packages/tflite_flutter), and [wakelock](https://pub.dev/packages/wakelock).
 
