@@ -95,14 +95,13 @@ class _HomeState extends State<Home> {
         input[0].insert(0, [x, y, z]);
         input[0].removeAt(maxLen);
 
-        // if output tensor shape [1,2] and type is float32
-        //var output = List.filled(1 * 2, 0).reshape([1, 2]);
+        // initialize zeros list container to store result from interpreter
         var output = List<double>.filled(20, 0).reshape([1, 20]);
 
-        // The run method will run inference and
-        // store the resulting values in output.
+        // run model and store result in output
         _interpreter.run(input, output);
 
+        // get final class prediction by argmax the softmax output
         classPred = argmax(output[0]);
 
         // exponential weighted moving average
