@@ -9,12 +9,17 @@ import '../utils/datatypes.dart';
 import '../utils/constants.dart' as _constants;
 
 
+class TensorflowService {
+
+}
+
 class Charts extends StatefulWidget{
   const Charts({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
+
 
 class _HomeState extends State<Charts> {
   final _modelFile = 'model.tflite';
@@ -96,29 +101,29 @@ class _HomeState extends State<Charts> {
         // get final class prediction by argmax the softmax output
         classPred = argmax(output[0]);
 
-        // update FPS counter every second
-        if (stopwatch.elapsedMilliseconds > 1000) {
-          double currFreq = count / (stopwatch.elapsedMilliseconds / 1000);
-          fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
+        // update FPS counter N milliseconds
+        //if (stopwatch.elapsedMilliseconds > 10) {
+        double currFreq = count / (stopwatch.elapsedMilliseconds / 1000);
+        fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
 
-          // store result in history
-          while ((fpsPoints.length > _constants.limitCount) && (fpsPoints.isNotEmpty)) {
-            xPoints.removeAt(0);
-            yPoints.removeAt(0);
-            zPoints.removeAt(0);
-            fpsPoints.removeAt(0);
-          }
-          xPoints.add(FlSpot(xValue, x));
-          yPoints.add(FlSpot(xValue, y));
-          zPoints.add(FlSpot(xValue, z));
-          fpsPoints.add(FlSpot(xValue, fpsValue));
-
-          // reset stopwatch
-          stopwatch.reset();
-
-          // reset counter
-          count = 0;
+        // store result in history
+        while ((fpsPoints.length > _constants.limitCount) && (fpsPoints.isNotEmpty)) {
+          xPoints.removeAt(0);
+          yPoints.removeAt(0);
+          zPoints.removeAt(0);
+          fpsPoints.removeAt(0);
         }
+        xPoints.add(FlSpot(xValue, x));
+        yPoints.add(FlSpot(xValue, y));
+        zPoints.add(FlSpot(xValue, z));
+        fpsPoints.add(FlSpot(xValue, fpsValue));
+
+        // reset stopwatch
+        stopwatch.reset();
+
+        // reset counter
+        count = 0;
+        //}
       });
     });
   }
