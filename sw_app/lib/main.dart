@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget{
     ]);
     // disable the phone from going into sleep mode while app is running
     Wakelock.enable();
-    return MaterialApp(
+    return const MaterialApp(
       home: Home(),
     );
   }
