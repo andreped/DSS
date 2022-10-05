@@ -18,11 +18,11 @@ class Charts extends StatefulWidget{
   const Charts({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _ChartsState createState() => _ChartsState();
 }
 
 
-class _HomeState extends State<Charts> {
+class _ChartsState extends State<Charts> {
   final _modelFile = 'model.tflite';
   double x = 0,
       y = 0,
@@ -41,10 +41,10 @@ class _HomeState extends State<Charts> {
   int elapsedFrames = 0;
 
   // chart plotter variables
-  final xPoints = <FlSpot>[];
-  final yPoints = <FlSpot>[];
-  final zPoints = <FlSpot>[];
-  final fpsPoints = <FlSpot>[];
+  final xPoints = <FlSpot>[const FlSpot(0, 0)];
+  final yPoints = <FlSpot>[const FlSpot(0, 0)];
+  final zPoints = <FlSpot>[const FlSpot(0, 0)];
+  final fpsPoints = <FlSpot>[const FlSpot(0, 25)];
   double xValue = 0;
   double step = 0.05;
 
@@ -70,61 +70,56 @@ class _HomeState extends State<Charts> {
       interval: Sensors.SENSOR_DELAY_GAME,
     );
 
-    // initialize lists
-    xPoints.add(FlSpot(xValue, 0));
-    yPoints.add(FlSpot(xValue, 0));
-    zPoints.add(FlSpot(xValue, 0));
-    fpsPoints.add(FlSpot(xValue, 25));  // @TODO: hard-coded init
-
     _accelSubscription = _stream.listen((sensorEvent) {
+      final _accelData = sensorEvent.data;
+
+      // update counter - relevant for FPS counter
+      count++;
+      xValue++;
+
+      // get coordinates
+      x = _accelData[0];
+      y = _accelData[1];
+      z = _accelData[2];
+
+      // add accelerator data to tensor and remove oldest sample
+      input[0].insert(0, [x, y, z]);
+      input[0].removeAt(maxLen);
+
+      // initialize zeros list container to store result from interpreter
+      var output = List<double>.filled(20, 0).reshape([1, 20]);
+
+      // run model and store result in output
+      _interpreter.run(input, output);
+
+      // get final class prediction by argmax the softmax output
+      classPred = argmax(output[0]);
+
+      // update FPS counter N milliseconds
+      //if (stopwatch.elapsedMilliseconds > 10) {
+      double currFreq = count / (stopwatch.elapsedMilliseconds / 1000);
+      fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
+
+      // store result in history
+      xPoints.add(FlSpot(xValue, x));
+      yPoints.add(FlSpot(xValue, y));
+      zPoints.add(FlSpot(xValue, z));
+      fpsPoints.add(FlSpot(xValue, fpsValue));
+
+      while ((fpsPoints.length > _constants.limitCount) && (fpsPoints.isNotEmpty)) {
+        xPoints.removeAt(0);
+        yPoints.removeAt(0);
+        zPoints.removeAt(0);
+        fpsPoints.removeAt(0);
+      }
+
+      // reset stopwatch
+      stopwatch.reset();
+
+      // reset counter
+      count = 0;
+
       setState(() {
-        final _accelData = sensorEvent.data;
-
-        // update counter - relevant for FPS counter
-        count++;
-        xValue++;
-
-        // get coordinates
-        x = _accelData[0];
-        y = _accelData[1];
-        z = _accelData[2];
-
-        // add accelerator data to tensor and remove oldest sample
-        input[0].insert(0, [x, y, z]);
-        input[0].removeAt(maxLen);
-
-        // initialize zeros list container to store result from interpreter
-        var output = List<double>.filled(20, 0).reshape([1, 20]);
-
-        // run model and store result in output
-        _interpreter.run(input, output);
-
-        // get final class prediction by argmax the softmax output
-        classPred = argmax(output[0]);
-
-        // update FPS counter N milliseconds
-        //if (stopwatch.elapsedMilliseconds > 10) {
-        double currFreq = count / (stopwatch.elapsedMilliseconds / 1000);
-        fpsValue = (fpsValue * smoothing) + currFreq * (1 - smoothing);
-
-        // store result in history
-        while ((fpsPoints.length > _constants.limitCount) && (fpsPoints.isNotEmpty)) {
-          xPoints.removeAt(0);
-          yPoints.removeAt(0);
-          zPoints.removeAt(0);
-          fpsPoints.removeAt(0);
-        }
-        xPoints.add(FlSpot(xValue, x));
-        yPoints.add(FlSpot(xValue, y));
-        zPoints.add(FlSpot(xValue, z));
-        fpsPoints.add(FlSpot(xValue, fpsValue));
-
-        // reset stopwatch
-        stopwatch.reset();
-
-        // reset counter
-        count = 0;
-        //}
       });
     });
   }
@@ -158,6 +153,8 @@ class _HomeState extends State<Charts> {
 
   @override
   void initState() {
+    super.initState();
+
     // load model
     _loadModel();
 
@@ -166,8 +163,6 @@ class _HomeState extends State<Charts> {
 
     // @TODO: Need to add mechanism to close accelerometer listener when done
     //_accelSubscription.cancel();
-
-    super.initState();
   }
 
   @override
