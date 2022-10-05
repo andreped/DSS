@@ -27,10 +27,10 @@ class Home extends StatelessWidget {
           ),
           body: const TabBarView(
             children: [
-              //DataStream(), //Icon(Icons.sensors),
+              DataStream(), //Icon(Icons.sensors),
               //Icon(Icons.sensors),
               Charts(), //Icon(Icons.show_chart_rounded),
-              Icon(Icons.show_chart_rounded),
+              //Icon(Icons.show_chart_rounded),
             ],
           ),
         ),

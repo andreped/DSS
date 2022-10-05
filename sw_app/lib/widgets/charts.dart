@@ -160,9 +160,6 @@ class _ChartsState extends State<Charts> {
 
     // run model using accelerometer data
     _run();
-
-    // @TODO: Need to add mechanism to close accelerometer listener when done
-    //_accelSubscription.cancel();
   }
 
   @override
@@ -205,5 +202,13 @@ class _ChartsState extends State<Charts> {
             ],
           ),
     );
+  }
+
+  @override
+  void dispose() {
+    // need to close listener when class is inactive
+    _accelSubscription.cancel();
+
+    super.dispose();
   }
 }

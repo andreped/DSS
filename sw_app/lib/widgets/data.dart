@@ -101,9 +101,6 @@ class _DataStreamState extends State<DataStream> {
     // run model using accelerometer data
     _run();
 
-    // @TODO: Need to add mechanism to close accelerometer listener when done
-    //_accelSubscription.cancel();
-
     super.initState();
   }
 
@@ -171,5 +168,13 @@ class _DataStreamState extends State<DataStream> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // need to close listener when class is inactive
+    _accelSubscription.cancel();
+
+    super.dispose();
   }
 }
