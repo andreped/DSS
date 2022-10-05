@@ -2,4 +2,5 @@ venv/
 .idea/
 *.pyc
 output/
-*.lock
+
+
