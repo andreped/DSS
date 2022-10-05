@@ -16,7 +16,6 @@ class Charts extends StatefulWidget{
   _ChartsState createState() => _ChartsState();
 }
 
-
 class _ChartsState extends State<Charts> {
   final _modelFile = 'model.tflite';
   double x = 0,
