@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/sketch.png">
+    <img src="assets/sketch.png" alt="drawing" width="400">
 </div>
 <div align="center">
 <h1 align="center">DSS: Deep Sensors Systems</h1>
