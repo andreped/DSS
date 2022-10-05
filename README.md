@@ -1,4 +1,7 @@
 <div align="center">
+    <img src="assets/sketch.png" alt="drawing" width="400">
+</div>
+<div align="center">
 <h1 align="center">DSS: Deep Sensors Systems</h1>
 <h3 align="center">Framework for training and deploying deep neural networks for sensor systems</h3>
 
