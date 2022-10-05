@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
                 Tab(icon: Icon(Icons.show_chart_rounded)),
               ],
             ),
-            title: const Text('DSWS: Demo app'),
+            title: const Text('DSS: Demo app'),
             backgroundColor: Colors.redAccent,
           ),
           body: const TabBarView(
