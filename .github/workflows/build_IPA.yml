@@ -54,7 +54,9 @@ jobs:
           flutter pub get
       
       - name: Build Flutter
-        run: flutter build ipa --release --export-options-plist=./ios/Runner/ExportOptions.plist
+        run: |
+          ls -la 
+          flutter build ipa --release --export-options-plist=./ios/Runner/ExportOptions.plist
       
       - name: Upload IPA
         uses: actions/upload-artifact@v2
