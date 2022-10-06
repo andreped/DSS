@@ -54,11 +54,15 @@ jobs:
           cd sw_app/
           flutter pub get
       
+      - name: Clean Flutter
+        run: flutter clean
+      
       - name: Build Flutter
         run: |
           cd sw_app/
-          ls -la 
-          flutter build bundle
+          ls -la
+          flutter build ios --release --no-codesign
+          #flutter build bundle
           #flutter build ipa --release 
           #--export-options-plist=ios/ExportOptions.plist
       
