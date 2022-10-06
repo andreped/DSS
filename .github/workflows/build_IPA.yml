@@ -55,6 +55,7 @@ jobs:
       
       - name: Build Flutter
         run: |
+          cd sw_app/
           ls -la 
           flutter build ipa --release --export-options-plist=./ios/Runner/ExportOptions.plist
       
@@ -62,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-ipa
-          path: build/ios/ipa/*.ipa
+          path: sw_app/build/ios/ipa/*.ipa
           if-no-files-found: error
 
       - name: Clean up keychain and provisioning profile
