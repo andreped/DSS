@@ -1,7 +1,8 @@
 name: Build and Sign macOS
 on:
   push:
-    tags:
+    #tags:
+    branches:
       - '*'
 jobs:
   macos:
