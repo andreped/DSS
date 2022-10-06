@@ -55,7 +55,9 @@ jobs:
           flutter pub get
       
       - name: Clean Flutter
-        run: flutter clean
+        run: |
+          cd sw_app/
+          flutter clean
       
       - name: Build Flutter
         run: |
