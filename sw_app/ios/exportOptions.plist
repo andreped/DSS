@@ -9,7 +9,7 @@
  <key>provisioningProfiles</key>
  <dict>
  <key>com.sintef.deepsensor</key>
- <string>deepsensor</string>
+ <string>DeepSensor</string>
  </dict>
  </dict>
  </plist>
