@@ -57,7 +57,7 @@ jobs:
         run: |
           cd sw_app/
           ls -la 
-          flutter build ipa --release --export-options-plist=./ios/Runner/ExportOptions.plist
+          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
       
       - name: Upload IPA
         uses: actions/upload-artifact@v2
