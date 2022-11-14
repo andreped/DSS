@@ -57,7 +57,7 @@ A simple Mobile app was developed in Flutter, which demonstrates the AI in actio
 <img src="sw_app/assets/app_snapshot_data.jpg" width="20%" height="20%"> <img src="sw_app/assets/app_snapshot_charts.jpg" width="20%" height="20%">
 </p>
 
-To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). 
+To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would. 
 
 ## Feature structure
 
