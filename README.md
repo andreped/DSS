@@ -21,7 +21,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Tested with Python 3.7.9, across Win10, macOS, and Ubuntu 20.04 operating systems.
+Tested with Python 3.7.9, on Win10, macOS, and Ubuntu Linux operating systems.
 
 Note that to activate the virtual environment on Windows instead run `./venv/Scripts/activate`.
 
