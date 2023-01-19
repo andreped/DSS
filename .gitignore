@@ -2,5 +2,6 @@ venv/
 .idea/
 *.pyc
 output/
-
-
+.DS_Store
+.vs/
+.vscode/
