@@ -27,14 +27,14 @@ def get_model(ret, mu=None, var=None):
         inputs = Input(shape=(maxlen, 3))
         x = inputs
         for _ in range(4):
-            x = transformer_encoder(x, head_size=32, num_heads=4, ff_dim=4, dropout=0)
+            x = transformer_encoder(x, head_size=128, num_heads=4, ff_dim=4, dropout=0.25)
 
         x = GlobalAveragePooling1D(data_format="channels_first")(x)
-        for dim in [32]:
+        for dim in [128]:
             x = Dense(dim, activation="relu")(x)
-            x = Dropout(rate=0.5)(x)
-        outputs = Dense(nb_classes, activation="softmax")(x)
-        return Model(inputs, outputs)
+            # x = Dropout(rate=0.4)(x)
+        x = Dense(nb_classes, activation="softmax")(x)
+        return Model(inputs=inputs, outputs=x)
 
     else:
         raise ValueError("Unknown architecture provided:", ret.arch)
