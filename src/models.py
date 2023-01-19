@@ -30,9 +30,8 @@ def get_model(ret, mu=None, var=None):
             x = transformer_encoder(x, head_size=128, num_heads=4, ff_dim=4, dropout=0.25)
 
         x = GlobalAveragePooling1D(data_format="channels_first")(x)
-        for dim in [128]:
+        for dim in [64]:
             x = Dense(dim, activation="relu")(x)
-            # x = Dropout(rate=0.4)(x)
         x = Dense(nb_classes, activation="softmax")(x)
         return Model(inputs=inputs, outputs=x)
 
