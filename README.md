@@ -12,17 +12,18 @@
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems. From training RNNs to deploying them in a mobile app in real time!
 </div>
 
-
 ## Setup
 
 When using this framework, it is a good idea to setup a virtual environment:
 ```
 virtualenv -ppython3 venv --clear
-./venv/Scripts/activate
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Tested with Python 3.7.9.
+Tested with Python 3.7.9, across Win10, macOS, and Ubuntu 20.04 operating systems.
+
+Note that to activate the virtual environment on Windows instead run `./venv/Scripts/activate`.
 
 ## Usage
 
