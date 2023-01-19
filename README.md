@@ -38,7 +38,7 @@ The script supports multiple arguments. To see supported arguments, run `python 
 
 To visualize training history, use TensorBoard (with example):
 ```
-tensorboard --logdir .\output\logs\gesture_classifier_arch_rnn
+tensorboard --logdir ./output/logs/gesture_classifier_arch_rnn/
 ```
 
 Example of training history for a Recurrent Neural Network (RNN) can be seen underneath:
