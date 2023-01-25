@@ -7,6 +7,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
+[![DOI](https://zenodo.org/badge/533821880.svg)](https://zenodo.org/badge/latestdoi/533821880)
  
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
 </div>
@@ -96,4 +97,21 @@ The training framework was mainly developed using [Keras](https://github.com/ker
 
 The mobile app was developed using Flutter, which is a framework developed by Google.
 For the app, the following _open_ packages were used [flutter_sensors](https://pub.dev/packages/flutter_sensors), [tflite_flutter](https://pub.dev/packages/tflite_flutter), and [wakelock](https://pub.dev/packages/wakelock).
+
+## How to cite
+
+If you found this project useful, please, consider citing it in your research article:
+
+```
+@software{andre_pedersen_2023_7568041,
+  author       = {André Pedersen and Javier Pérez de Frutos},
+  title        = {andreped/DSS: v0.1.1},
+  month        = jan,
+  year         = 2023,
+  publisher    = {Zenodo},
+  version      = {v0.1.1},
+  doi          = {10.5281/zenodo.7568041},
+  url          = {https://doi.org/10.5281/zenodo.7568041}
+}
+```
 
