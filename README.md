@@ -60,6 +60,14 @@ Best model reached a macro-averaged F1 score of 99.66 % on the validation set, a
 
 **Disclaimer:** This model was only trained for testing purposes. The input features were stratified on sample-level and not patient-level, and thus validation performance will likely not represent true performance on new data. However, having a trained model enables us to test it in a Mobile app.
 
+## Converting model to TF-Lite
+
+In order to be able to use the trained model in a mobile app, it is necessary to convert the model to a compatible format. TensorFlow Lite is an inference engine tailored for mobile devices. To convert the model to TF-Lite, simply run this command:
+
+```
+python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/converted/model.tflite
+```
+
 ## Mobile app
 
 A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
