@@ -6,7 +6,6 @@
 <h3 align="center">From training ViTs to real-time deployment and integration in cross-platform mobile apps</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
  
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
