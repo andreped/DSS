@@ -1,4 +1,4 @@
-name: Test training
+name: Test Training
 
 on:
   push:
