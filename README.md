@@ -23,7 +23,7 @@ Below there are described some of the key features of this project, but to see w
 | **Build APK** | ![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg) |
 
 
-## How to your own model?
+## How to your train own model?
 
 ### Setup
 
