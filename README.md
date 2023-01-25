@@ -3,14 +3,16 @@
 </div>
 <div align="center">
 <h1 align="center">DSS: Deep Sensors Systems</h1>
-<h3 align="center">Framework for training and deploying deep neural networks for sensor systems</h3>
+<h3 align="center">From training ViTs to real-time deployment and integration in cross-platform mobile apps</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
  
-**DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems. From training RNNs to deploying them in a mobile app in real time!
+**DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
 </div>
+
+Below there are described some of the key features of this project, but to see what else is possible, please, see [the wiki](https://github.com/andreped/DSS/wiki).
 
 ## Setup
 
