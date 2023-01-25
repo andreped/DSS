@@ -14,6 +14,14 @@
 
 Below there are described some of the key features of this project, but to see what else is possible, please, see [the wiki](https://github.com/andreped/DSS/wiki).
 
+## Continuous integration
+
+| Build Type | Status |
+| - | - |
+| **Test Training** | ![CI](https://github.com/andreped/DSS/workflows/Test%20Training/badge.svg) |
+| **Test Flutter** | ![CI](https://github.com/andreped/DSS/workflows/Test%20Flutter/badge.svg)| 
+| **Build APK** | ![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg) |
+
 ## Setup
 
 When using this framework, it is a good idea to setup a virtual environment:
