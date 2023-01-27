@@ -19,7 +19,15 @@ jobs:
           python-version: 3.7
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
-      
-      - name: Test training
-        run: python main.py -ep 2
+        run: |
+          pip install flake8 pytest-cov
+          pip install -r requirements.txt
+
+      - name: Run tests and collect coverage
+        run: pytest --cov tests/train_test.py -ep 2
+
+      - name: Lint with flake8
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
