@@ -3,7 +3,7 @@
 </div>
 <div align="center">
 <h1 align="center">DSS: Deep Sensors Systems</h1>
-<h3 align="center">From training ViTs to real-time deployment and integration in cross-platform mobile apps</h3>
+<h3 align="center">From training and deployment of ViTs to development of real-time cross-platform mobile apps</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
