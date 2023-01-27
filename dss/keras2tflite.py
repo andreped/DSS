@@ -2,6 +2,7 @@ from tensorflow import lite
 import tensorflow as tf
 from argparse import ArgumentParser
 import os
+import sys
 
 
 def convert(model_path):
