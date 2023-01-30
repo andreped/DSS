@@ -33,11 +33,11 @@ def main():
     if args.task == "train":
         from dss.train import Trainer
         Trainer(args).fit()
-    elif dss.task == "deploy":
+    elif args.task == "deploy":
         from src.eval import Evaluator
         Evaluator(args)
     else:
-        raise ValueError("Unknown task specified. Available tasks include {'train', 'eval'}, but used:", ret.task)
+        raise ValueError("Unknown task specified. Available tasks include {'train', 'eval'}, but used:", args.task)
 
 
 if __name__ == "__main__":

@@ -3,11 +3,12 @@
 </div>
 <div align="center">
 <h1 align="center">DSS: Deep Sensors Systems</h1>
-<h3 align="center">From training ViTs to real-time deployment and integration in cross-platform mobile apps</h3>
+<h3 align="center">From training and deployment of ViTs to development of real-time cross-platform mobile apps</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
 [![DOI](https://zenodo.org/badge/533821880.svg)](https://zenodo.org/badge/latestdoi/533821880)
+[![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
  
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
 </div>
