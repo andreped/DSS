@@ -124,8 +124,8 @@ class _ChartsState extends State<Charts> {
         height: 150,
         child: LineChart(
           LineChartData(
-            minY: points.map((abc) => abc.y).reduce(min),
-            maxY: points.map((abc) => abc.y).reduce(max),
+            minY: points.map((abc) => abc.y).reduce(min) - 0.05,
+            maxY: points.map((abc) => abc.y).reduce(max) + 0.05,
             minX: points.first.x,
             maxX: points.last.x,
             lineTouchData: LineTouchData(enabled: false),
