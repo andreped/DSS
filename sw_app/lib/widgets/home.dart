@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'data.dart';
 import 'charts.dart';
+import 'datarecording.dart';
 
 void main() {
   runApp(const Home());
@@ -13,22 +14,25 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.sensors)),
                 Tab(icon: Icon(Icons.show_chart_rounded)),
+                Tab(icon: Icon(Icons.access_alarm)),
               ],
             ),
             title: const Text('DSS: Demo app'),
             backgroundColor: Colors.redAccent,
           ),
-          body: const TabBarView(
+          body:  TabBarView(
             children: [
-              DataStream(),
-              Charts(),
+              const DataStream(),
+              const Charts(),
+              DataRecordingPage(),
+
             ],
           ),
         ),
@@ -36,3 +40,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+
