@@ -3,9 +3,6 @@ import 'data.dart';
 import 'charts.dart';
 import 'datarecording.dart';
 
-void main() {
-  runApp(const Home());
-}
 
 class Home extends StatelessWidget {
   const Home({key});
@@ -32,7 +29,6 @@ class Home extends StatelessWidget {
               const DataStream(),
               const Charts(),
               DataRecordingPage(),
-
             ],
           ),
         ),
