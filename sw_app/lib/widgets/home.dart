@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage>
                               children: const <TextSpan>[
                                 TextSpan(
                                     text:
-                                        'Here the absolute values of the accelerometer in x, y and z direction can be found, as well as the predicted class und FPS rate',
+                                        'Here the absolute values of the accelerometer in x, y and z direction can be found, as well as the predicted class und FPS rate.',
                                     style: TextStyle(
                                         fontSize: 15, color: Colors.white)),
                               ],
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage>
                               children: const <TextSpan>[
                                 TextSpan(
                                     text:
-                                        'Here the accelerometer data can be recorded and afterward sent to a server ',
+                                        'Here the accelerometer data can be recorded and afterward sent to a server. ',
                                     style: TextStyle(
                                         fontSize: 15, color: Colors.white)),
                               ],
