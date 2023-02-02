@@ -4,12 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:wakelock/wakelock.dart';
 import 'widgets/home.dart';
 
-
 Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -21,8 +20,11 @@ class MyApp extends StatelessWidget{
     ]);
     // disable the phone from going into sleep mode while app is running
     Wakelock.enable();
-    return const MaterialApp(
-      home: Home(),
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreenAccent),
+      ),
+      home: HomePage(),
     );
   }
 }

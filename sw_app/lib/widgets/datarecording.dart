@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:sqflite/sqflite.dart';
 import 'dart:math';
 import '../utils/datatypes.dart';
 import '../utils/constants.dart' as _constants;
-
 
 class DataRecordingPage extends StatefulWidget {
   @override
@@ -148,9 +148,10 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
           makeLineChart(zPoints, _constants.zColor),
           ElevatedButton(
               onPressed: () {
-
                 this.isStarted = !this.isStarted;
-                this.isStarted ? stream_accelerometer_data() : reset_variables();
+                this.isStarted
+                    ? stream_accelerometer_data()
+                    : reset_variables();
 
                 setState(() {});
               },
@@ -159,8 +160,9 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle:
                       TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              child:
-                  this.isStarted ? Text('Stop recording') : Text('Start Recording'))
+              child: this.isStarted
+                  ? Text('Stop recording')
+                  : Text('Start Recording'))
         ],
       ),
     );

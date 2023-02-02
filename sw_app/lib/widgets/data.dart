@@ -5,8 +5,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 import '../utils/math_addons.dart';
 import '../utils/constants.dart' as _constants;
 
-
-class DataStream extends StatefulWidget{
+class DataStream extends StatefulWidget {
   const DataStream({Key? key}) : super(key: key);
 
   @override
@@ -14,9 +13,7 @@ class DataStream extends StatefulWidget{
 }
 
 class _DataStreamState extends State<DataStream> {
-  double x = 0,
-      y = 0,
-      z = 0;
+  double x = 0, y = 0, z = 0;
   int classPred = 0;
   String direction = "none";
   var input = List<double>.filled(150, 0).reshape([1, 50, 3]);
@@ -106,6 +103,10 @@ class _DataStreamState extends State<DataStream> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var style = theme.textTheme.displaySmall!
+        .copyWith(color: theme.colorScheme.onSecondary, fontSize: 30);
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -120,26 +121,22 @@ class _DataStreamState extends State<DataStream> {
                 //alignment: Alignment.center,
                 //padding: const EdgeInsets.all(30),
                 width: 380,
-                //height: 250,
-                child: Column(
-                    children: [
-                      const Text("\nAccelerometer data:",
-                        style: TextStyle(fontSize: 30, color: Colors.white),),
-                      Text("x: " + x.toStringAsFixed(4),
-                        style: const TextStyle(
-                            fontSize: 30, color: Colors.white),),
-                      Text("y: " + y.toStringAsFixed(4),
-                        style: const TextStyle(
-                            fontSize: 30, color: Colors.white),),
-                      Text("z: " + z.toStringAsFixed(4) + "\n",
-                        style: const TextStyle(
-                            fontSize: 30, color: Colors.white),),
-                    ]
-                ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.blueGrey
-                ),
+                    color: Colors.blueGrey),
+                //height: 250,
+                child: Column(children: [
+                  Text("\nAccelerometer data:", style: style),
+                  Text("x: " + x.toStringAsFixed(4), style: style),
+                  Text(
+                    "y: " + y.toStringAsFixed(4),
+                    style: style,
+                  ),
+                  Text(
+                    "z: " + z.toStringAsFixed(4) + "\n",
+                    style: style,
+                  ),
+                ]),
               ),
               const SizedBox(
                 height: 20,
@@ -147,21 +144,17 @@ class _DataStreamState extends State<DataStream> {
               ),
               Container(
                 width: 380,
-                //height: 200,
-                child: Column(
-                    children: [
-                      Text("\nClass pred: " + classPred.toString(),
-                        style: const TextStyle(
-                            fontSize: 30, color: Colors.white),),
-                      Text("\nFPS: " + fpsValue.toStringAsFixed(1) + "\n",
-                        style: const TextStyle(
-                            fontSize: 30, color: Colors.white),),
-                    ]
-                ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.black38
-                ), //BoxDecoration
+                    color: Colors.black38),
+                //height: 200,
+                child: Column(children: [
+                  Text("\nClass pred: " + classPred.toString(), style: style),
+                  Text(
+                    "\nFPS: " + fpsValue.toStringAsFixed(1) + "\n",
+                    style: style,
+                  ),
+                ]), //BoxDecoration
               ),
             ],
           ),
