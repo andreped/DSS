@@ -113,7 +113,7 @@ FeaturesDict({
 
 The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
-The mobile app was developed using Flutter, which is a framework developed by Google.
+The mobile app was developed using [Flutter](https://github.com/flutter/flutter), which is a framework developed by Google.
 For the app, the following _open_ packages were used (either MIT or BSD-2 licensed):
 * [flutter_sensors](https://pub.dev/packages/flutter_sensors)
 * [tflite_flutter](https://pub.dev/packages/tflite_flutter)
