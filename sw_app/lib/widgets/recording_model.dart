@@ -64,6 +64,7 @@ class Recording {
         RecordingFields.timeStamp: timeStamp.toIso8601String(),
         RecordingFields.xAccel: xAccel,
         RecordingFields.yAccel: yAccel,
+        RecordingFields.zAccel: zAccel,
       };
 }
 
@@ -81,9 +82,9 @@ class RecordingListFields {
 class RecordingList {
   final int? id;
   final DateTime timeStamp;
-  final DateTime duration;
+  int duration;
 
-  const RecordingList({
+  RecordingList({
     this.id,
     required this.timeStamp,
     required this.duration,
@@ -92,7 +93,7 @@ class RecordingList {
   RecordingList copy({
     int? id,
     DateTime? timeStamp,
-    DateTime? duration,
+    int? duration,
   }) =>
       RecordingList(
         id: id ?? this.id,
@@ -102,13 +103,14 @@ class RecordingList {
 
   static RecordingList fromJson(Map<String, Object?> json) => RecordingList(
         id: json[RecordingListFields.id] as int?,
-        timeStamp: DateTime.parse(json[RecordingListFields.timeStamp] as String),
-        duration: DateTime.parse(json[RecordingListFields.duration] as String),
+        timeStamp:
+            DateTime.parse(json[RecordingListFields.timeStamp] as String),
+        duration: json[RecordingListFields.duration] as int,
       );
 
   Map<String, Object?> toJson() => {
         RecordingListFields.id: id,
         RecordingListFields.timeStamp: timeStamp.toIso8601String(),
-        RecordingListFields.duration: duration.toIso8601String(),
+        RecordingListFields.duration: duration,
       };
 }
