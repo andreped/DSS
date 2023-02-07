@@ -26,9 +26,7 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
 
   var accelSubscription;
   var isStarted = false;
-  var startTime;
-  late int latestListId;
-  var duration;
+  var recordingList;
 
   void stream_accelerometer_data(listId) async {
     final _stream = await SensorManager().sensorUpdates(
@@ -61,7 +59,7 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
       setState(() {});
 
       var recording = Recording(
-          listId: listId + 1,
+          listId: listId ,
           timeStamp: DateTime.now(),
           xAccel: x,
           yAccel: y,
@@ -160,19 +158,16 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
               onPressed: () async {
                 this.isStarted = !this.isStarted;
                 if (this.isStarted) {
-                  this.startTime = DateTime.now();
-
-                  this.latestListId =
-                      await RecordingDatabase.instance.getLatestListId();
-                  print(this.latestListId);
-
-                  stream_accelerometer_data(this.latestListId);
-                } else {
-                  this.duration =
-                      DateTime.now().difference(startTime).inSeconds;
-                  var recordingList = RecordingList(
-                      timeStamp: startTime, duration: this.duration);
+                  recordingList = RecordingList(
+                      timeStamp: DateTime.now(), duration: 0);
                   RecordingDatabase.instance.createList(recordingList);
+
+                  int latestListId = await RecordingDatabase.instance.getLatestListId();
+
+                  stream_accelerometer_data(latestListId);
+                } else {
+
+                  RecordingDatabase.instance.update();
                   reset_variables();
                 }
 

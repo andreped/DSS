@@ -2,8 +2,6 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sw_app/widgets/recording_model.dart';
 
-var version = 1;
-
 class RecordingDatabase {
   static late final RecordingDatabase instance = RecordingDatabase._init();
 
@@ -22,7 +20,7 @@ class RecordingDatabase {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    return await openDatabase(path, version: version, onCreate: _createDB);
+    return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
   Future _createDB(Database db, int version) async {
@@ -62,12 +60,25 @@ CREATE TABLE $tableRecordings (
     return recordingList.copy(id: id);
   }
 
-  Future<RecordingList> updateList(
-      RecordingList recordingList, DateTime time) async {
-    final db = await instance.database;
+  Future<void> update() async {
+    // Get a reference to the database.
+    final db = await database;
 
-    final id = await db.insert(tableRecordingsList, recordingList.toJson());
-    return recordingList.copy(id: id);
+    final orderBy = '${RecordingListFields.timeStamp} ASC';
+    final result = await db.query(tableRecordingsList, orderBy: orderBy);
+
+    var last = RecordingList.fromJson(result.last);
+
+    var duration = DateTime.now().difference(last.timeStamp).inSeconds;
+    var recordingList = RecordingList(
+        id: last.id, timeStamp: last.timeStamp, duration: duration);
+
+    await db.update(
+      tableRecordingsList,
+      recordingList.toJson(),
+      where: "${RecordingListFields.id} = ?",
+      whereArgs: [last.id],
+    );
   }
 
   Future<List<Recording>> readRecording(int id) async {
@@ -108,31 +119,22 @@ CREATE TABLE $tableRecordings (
 
     final result = await db.query(tableRecordingsList, orderBy: orderBy);
 
-    if (result.isNotEmpty) {
-      int last = result.last['_id'] as int;
-      return last;
-    } else {
-      return 0;
-    }
+    int last = result.last['_id'] as int;
+    return last;
   }
 
-  // Future<int> update(Recording note) async {
-  //   final db = await instance.database;
-  //
-  //   return db.update(
-  //     tableNotes,
-  //     note.toJson(),
-  //     where: '${NoteFields.id} = ?',
-  //     whereArgs: [note.id],
-  //   );
-  // }
-
-  Future<int> delete(int id) async {
+  Future<void> delete(int? id) async {
     final db = await instance.database;
 
-    return await db.delete(
+    await db.delete(
       tableRecordingsList,
       where: '${RecordingListFields.id} = ?',
+      whereArgs: [id],
+    );
+
+    await db.delete(
+      tableRecordings,
+      where: '${RecordingFields.listId} = ?',
       whereArgs: [id],
     );
   }
@@ -143,7 +145,6 @@ CREATE TABLE $tableRecordings (
     db.close();
   }
 
-//TODO implement delete button for whole data base but still be able to record data afterwards without reopening the app
   Future<void> deleteDatabase() async {
     var db = await instance.database;
 
