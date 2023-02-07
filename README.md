@@ -26,7 +26,10 @@ Below there are described some of the key features of this project, but to see w
 
 ## How to your train own model?
 
-### Setup
+<details>
+<summary>
+
+### Setup</summary>
 
 When using this framework, it is a good idea to setup a virtual environment:
 ```
@@ -39,7 +42,13 @@ Tested with Python 3.7.9, on Win10, macOS, and Ubuntu Linux operating systems.
 
 Note that to activate the virtual environment on Windows instead run `./venv/Scripts/activate`.
 
-### Usage
+</details>
+
+
+<details>
+<summary>
+
+### Usage</summary>
 
 To train a model, simply run:
 ```
@@ -48,7 +57,13 @@ python main.py
 
 The script supports multiple arguments. To see supported arguments, run `python main.py -h`.
 
-### Training history
+</details>
+
+
+<details open>
+<summary>
+
+### Training history</summary>
 
 To visualize training history, use TensorBoard (with example):
 ```
@@ -64,31 +79,14 @@ Best model reached a macro-averaged F1 score of 99.66 % on the validation set, a
 
 **Disclaimer:** This model was only trained for testing purposes. The input features were stratified on sample-level and not patient-level, and thus validation performance will likely not represent true performance on new data. However, having a trained model enables us to test it in a Mobile app.
 
-## How to test the model in a mobile app?
+</details>
 
-### Converting model to TF-Lite
+<details>
+<summary>
 
-In order to be able to use the trained model in a mobile app, it is necessary to convert the model to a compatible format. TensorFlow Lite is an inference engine tailored for mobile devices. To convert the model to TF-Lite, simply run this command:
+### Available datasets</summary>
 
-```
-python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/converted/model.tflite
-```
-
-### Model integration and testing in app
-
-A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
-
-<p align="center" width="100%">
-<img src="sw_app/assets/app_snapshot_data.jpg" width="20%" height="20%"> <img src="sw_app/assets/app_snapshot_charts.jpg" width="20%" height="20%">
-</p>
-
-To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would.
-
-Info on how the mobile app was developed (and how to make your own app), can be found [in the wiki](https://github.com/andreped/DSS/wiki/Getting-started-with-mobile-development).
-
-## Which data is available?
-
-### SmartWatch Gestures
+#### SmartWatch Gestures
 
 The current data used to train the AI model is the SmartWatch Gestures dataset,
 which is available in [tensorflow-datasets](https://www.tensorflow.org/datasets/catalog/smartwatch_gestures). The dataset has the
@@ -108,6 +106,41 @@ FeaturesDict({
     'participant': tf.uint8,
 })
 ```
+</details>
+
+
+## How to test the model in a mobile app?
+
+<details>
+<summary>
+
+### Converting model to TF-Lite</summary>
+
+In order to be able to use the trained model in a mobile app, it is necessary to convert the model to a compatible format. TensorFlow Lite is an inference engine tailored for mobile devices. To convert the model to TF-Lite, simply run this command:
+
+```
+python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/converted/model.tflite
+```
+
+</details>
+
+
+<details open>
+<summary>
+
+### Model integration and testing in app</summary>
+
+A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
+
+<p align="center" width="100%">
+<img src="sw_app/assets/app_snapshot_data.jpg" width="20%" height="20%"> <img src="sw_app/assets/app_snapshot_charts.jpg" width="20%" height="20%">
+</p>
+
+To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would.
+
+Info on how the mobile app was developed (and how to make your own app), can be found [in the wiki](https://github.com/andreped/DSS/wiki/Getting-started-with-mobile-development).
+
+</details>
 
 ## Acknowledgements
 
