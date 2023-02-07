@@ -7,7 +7,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
-[![DOI](https://zenodo.org/badge/533821880.svg)](https://zenodo.org/badge/latestdoi/533821880)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7603053.svg)](https://doi.org/10.5281/zenodo.7603053)
 [![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
  
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
@@ -84,7 +84,7 @@ A simple Mobile app was developed in Flutter, which demonstrates the AI in actio
 
 To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would.
 
-Info on how the mobile app was developed (and how to make your own app), can be found [in the wiki](https://github.com/andreped/DSS/wiki/Getting-started-with-mobile-development)).
+Info on how the mobile app was developed (and how to make your own app), can be found [in the wiki](https://github.com/andreped/DSS/wiki/Getting-started-with-mobile-development).
 
 ## Which data is available?
 
@@ -113,23 +113,28 @@ FeaturesDict({
 
 The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
-The mobile app was developed using Flutter, which is a framework developed by Google.
-For the app, the following _open_ packages were used [flutter_sensors](https://pub.dev/packages/flutter_sensors), [tflite_flutter](https://pub.dev/packages/tflite_flutter), and [wakelock](https://pub.dev/packages/wakelock).
+The mobile app was developed using [Flutter](https://github.com/flutter/flutter), which is a framework developed by Google.
+For the app, the following _open_ packages were used (either MIT or BSD-2 licensed):
+* [flutter_sensors](https://pub.dev/packages/flutter_sensors)
+* [tflite_flutter](https://pub.dev/packages/tflite_flutter)
+* [wakelock](https://pub.dev/packages/wakelock)
+* [sqflite](https://pub.dev/packages/sqflite)
+* [provider](https://pub.dev/packages/provider)
 
 ## How to cite
 
 If you found this project useful, please, consider citing it in your research article:
 
 ```
-@software{andre_pedersen_2023_7568041,
-  author       = {André Pedersen and Javier Pérez de Frutos},
-  title        = {andreped/DSS: v0.1.1},
-  month        = jan,
+@software{andre_pedersen_2023_7603053,
+  author       = {André Pedersen and Ute Spiske and Javier Pérez de Frutos},
+  title        = {andreped/DSS: v0.1.3},
+  month        = feb,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v0.1.1},
-  doi          = {10.5281/zenodo.7568041},
-  url          = {https://doi.org/10.5281/zenodo.7568041}
+  version      = {v0.1.3},
+  doi          = {10.5281/zenodo.7603053},
+  url          = {https://doi.org/10.5281/zenodo.7603053}
 }
 ```
 
