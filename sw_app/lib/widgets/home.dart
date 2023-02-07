@@ -53,132 +53,134 @@ class _HomePageState extends State<HomePage>
             controller: _tabController,
             children: [
               Container(
-                  child: Column(
+                  child: SingleChildScrollView(
+                    child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 150, //height of button
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _tabController.animateTo(1);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Container(
-                        child: RichText(
-                            text: TextSpan(
-                              text: 'Show AI Model\n ',
-                              style: style,
-                              children: const <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        'Here the absolute values of the accelerometer in x, y and z direction can be found, as well as the predicted class und FPS rate',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ],
-                            ),
-                            textAlign: TextAlign.center),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 150, //height of button
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _tabController.animateTo(2);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Container(
-                        child: RichText(
-                            text: TextSpan(
-                              text: 'Visualize Data\n ',
-                              style: style,
-                              children: const <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        'Here a real-time chart of the accelerometer values in x, y and z direction, as well as the FPS rate, can be found.',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ],
-                            ),
-                            textAlign: TextAlign.center),
+                    SizedBox(
+                      height: 150, //height of button
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _tabController.animateTo(1);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Container(
+                          child: RichText(
+                              text: TextSpan(
+                                text: 'Show AI Model\n ',
+                                style: style,
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text:
+                                          'Here the absolute values of the accelerometer in x, y and z direction can be found, as well as the predicted class und FPS rate',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                ],
+                              ),
+                              textAlign: TextAlign.center),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 150, //height of button
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _tabController.animateTo(3);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Container(
-                        child: RichText(
-                            text: TextSpan(
-                              text: 'Record Data\n ',
-                              style: style,
-                              children: const <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        'Here the accelerometer data can be recorded and afterward sent to a server ',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ],
-                            ),
-                            textAlign: TextAlign.center),
+                    const SizedBox(
+                      height: 20,
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 150, //height of button
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _tabController.animateTo(2);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Container(
+                          child: RichText(
+                              text: TextSpan(
+                                text: 'Visualize Data\n ',
+                                style: style,
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text:
+                                          'Here a real-time chart of the accelerometer values in x, y and z direction, as well as the FPS rate, can be found.',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                ],
+                              ),
+                              textAlign: TextAlign.center),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 150, //height of button
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _tabController.animateTo(4);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Container(
-                        child: RichText(
-                            text: TextSpan(
-                              text: 'Save Data\n ',
-                              style: style,
-                              children: const <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        'Here the different recordings are stored and can be deleted.',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ],
-                            ),
-                            textAlign: TextAlign.center),
+                    const SizedBox(
+                      height: 20,
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 150, //height of button
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _tabController.animateTo(3);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Container(
+                          child: RichText(
+                              text: TextSpan(
+                                text: 'Record Data\n ',
+                                style: style,
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text:
+                                          'Here the accelerometer data can be recorded and afterward sent to a server ',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                ],
+                              ),
+                              textAlign: TextAlign.center),
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 20,
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 150, //height of button
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _tabController.animateTo(4);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Container(
+                          child: RichText(
+                              text: TextSpan(
+                                text: 'Data Overview\n ',
+                                style: style,
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text:
+                                          'Here the different recordings are stored and can be deleted.',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                ],
+                              ),
+                              textAlign: TextAlign.center),
+                        ),
+                      ),
+                    ),
                 ],
-              )),
+              ),
+                  )),
               const DataStream(),
               const Charts(),
               DataRecordingPage(),
