@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sw_app/widgets/recording_database.dart';
+import 'package:sw_app/widgets/recording_model.dart';
 import 'dart:math';
 import '../utils/datatypes.dart';
 import '../utils/constants.dart' as _constants;
@@ -25,8 +26,9 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
 
   var accelSubscription;
   var isStarted = false;
+  var recordingList;
 
-  void stream_accelerometer_data() async {
+  void stream_accelerometer_data(listId) async {
     final _stream = await SensorManager().sensorUpdates(
       sensorId: Sensors.ACCELEROMETER,
       interval: Sensors.SENSOR_DELAY_GAME,
@@ -54,9 +56,15 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
         zPoints.removeAt(0);
       }
 
-      setState(() {
-        //this.isStarted = true;
-      });
+      setState(() {});
+
+      var recording = Recording(
+          listId: listId ,
+          timeStamp: DateTime.now(),
+          xAccel: x,
+          yAccel: y,
+          zAccel: z);
+      RecordingDatabase.instance.create(recording);
     });
   }
 
@@ -147,11 +155,21 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
           makeLineChart(yPoints, _constants.yColor),
           makeLineChart(zPoints, _constants.zColor),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 this.isStarted = !this.isStarted;
-                this.isStarted
-                    ? stream_accelerometer_data()
-                    : reset_variables();
+                if (this.isStarted) {
+                  recordingList = RecordingList(
+                      timeStamp: DateTime.now(), duration: 0);
+                  RecordingDatabase.instance.createList(recordingList);
+
+                  int latestListId = await RecordingDatabase.instance.getLatestListId();
+
+                  stream_accelerometer_data(latestListId);
+                } else {
+
+                  RecordingDatabase.instance.update();
+                  reset_variables();
+                }
 
                 setState(() {});
               },

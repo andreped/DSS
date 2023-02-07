@@ -9,7 +9,7 @@
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7603053.svg)](https://doi.org/10.5281/zenodo.7603053)
 [![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
- 
+
 **DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
 </div>
 
@@ -20,7 +20,7 @@ Below there are described some of the key features of this project, but to see w
 | Build Type | Status |
 | - | - |
 | **Test Training** | ![CI](https://github.com/andreped/DSS/workflows/Test%20Training/badge.svg) |
-| **Test Flutter** | ![CI](https://github.com/andreped/DSS/workflows/Test%20Flutter/badge.svg)| 
+| **Test Flutter** | ![CI](https://github.com/andreped/DSS/workflows/Test%20Flutter/badge.svg)|
 | **Build APK** | ![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg) |
 
 
@@ -114,12 +114,12 @@ FeaturesDict({
 The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
 The mobile app was developed using [Flutter](https://github.com/flutter/flutter), which is a framework developed by Google.
-For the app, the following _open_ packages were used (either MIT or BSD-2 licensed):
+For the app, the following _open_ packages were used (either MIT, BSD-2, or BSD-3 licensed):
 * [flutter_sensors](https://pub.dev/packages/flutter_sensors)
 * [tflite_flutter](https://pub.dev/packages/tflite_flutter)
 * [wakelock](https://pub.dev/packages/wakelock)
 * [sqflite](https://pub.dev/packages/sqflite)
-* [provider](https://pub.dev/packages/provider)
+* [intl](https://pub.dev/packages/intl)
 
 ## How to cite
 
