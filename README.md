@@ -120,6 +120,8 @@ For the app, the following _open_ packages were used (either MIT, BSD-2, or BSD-
 * [wakelock](https://pub.dev/packages/wakelock)
 * [sqflite](https://pub.dev/packages/sqflite)
 * [intl](https://pub.dev/packages/intl)
+* [csv](https://pub.dev/packages/csv)
+* [path_provider](https://pub.dev/packages/path_provider)
 
 ## How to cite
 
