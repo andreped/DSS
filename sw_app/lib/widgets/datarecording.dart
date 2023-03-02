@@ -187,15 +187,15 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
 
     String csv = const ListToCsvConverter().convert(sensor_data_list);
 
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    var appDocPath = appDocDir.path;
+    Directory? appDocDir = await getExternalStorageDirectory();
+    var appDocPath = appDocDir?.path;
 
 
-    File f = File(appDocPath + "/" + listId.toString()+ ".csv");
+    File f = File(appDocPath! + "/" + listId.toString()+ ".csv");
     print(f);
 
     f.writeAsString(csv);
-    print('CSV File saved');
+    print('CSV File saved in ' + f.path.toString());
 
   }
 

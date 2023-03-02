@@ -101,11 +101,11 @@ class RecordingDatabase {
       whereArgs: [id],
     );
 
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    var appDocPath = appDocDir.path;
+    Directory? appDocDir = await getExternalStorageDirectory();
+    var appDocPath = appDocDir?.path;
 
 
-    File f = File(appDocPath + "/" + id.toString()+ ".csv");
+    File f = File("$appDocPath/$id.csv");
     await f.delete();
   }
 
@@ -119,9 +119,9 @@ class RecordingDatabase {
     var db = await instance.database;
 
     await db.delete(tableRecordingsList);
-    Directory appDocDir = await getApplicationDocumentsDirectory();
+    Directory? appDocDir = await getExternalStorageDirectory();
 
-    appDocDir.list(recursive: true).listen((file) {
+    appDocDir?.list(recursive: true).listen((file) {
       if (file is File && file.path.endsWith('.csv')) file.deleteSync();
     });
 
