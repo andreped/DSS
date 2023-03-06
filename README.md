@@ -7,7 +7,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Downloads](https://img.shields.io/github/downloads/andreped/DSS/total?label=GitHub%20downloads&logo=github)](https://github.com/andreped/DSS/releases)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7603053.svg)](https://doi.org/10.5281/zenodo.7603053)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7568040.svg)](https://doi.org/10.5281/zenodo.7568040)
 [![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
 
 **DSS** was developed by SINTEF Health with aim to integrate AIs into sensor systems.
