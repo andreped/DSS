@@ -79,8 +79,8 @@ python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/
 A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time. The data can also be stored and deleted locally.
 
 <p align="center" width="100%">
-<img src="sw_app/assets/HomeScreen.png" width="18%" height="20%"> <img src="sw_app/assets/Prediction.png" width="18%" height="20%"> <img src="sw_app/assets/ChartWithFPS.png" width="18%" height="20%">
-<img src="sw_app/assets/Recording.png" width="18%" height="20%"> <img src="sw_app/assets/Database.png" width="18%" height="20%">
+<img src="sw_app/assets/HomeScreen.jpg" width="18%" height="20%"> <img src="sw_app/assets/Prediction.jpg" width="18%" height="20%"> <img src="sw_app/assets/ChartWithFPS.jpg" width="18%" height="20%">
+<img src="sw_app/assets/Recording.jpg" width="18%" height="20%"> <img src="sw_app/assets/Database.jpg" width="18%" height="20%">
 </p>
 
 To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would.
