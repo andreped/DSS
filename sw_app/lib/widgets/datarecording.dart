@@ -329,7 +329,11 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
   @override
   void dispose() {
     // need to close listener when class is inactive
-    accelSubscription.cancel();
+    if (accelSubscription != null) {
+      accelSubscription.cancel();
+      rotSubscription.cancel();
+      gyroSubscription.cancel();
+    }
 
     super.dispose();
   }
