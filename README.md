@@ -76,7 +76,7 @@ python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/
 
 ### Model integration and testing in app
 
-A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
+A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time. The data can also be stored and deleted locally.
 
 <p align="center" width="100%">
 <img src="sw_app/assets/HomeScreen.png" width="18%" height="20%"> <img src="sw_app/assets/Prediction.png" width="18%" height="20%"> <img src="sw_app/assets/ChartWithFPS.png" width="18%" height="20%">
