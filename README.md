@@ -165,15 +165,15 @@ For the app, the following _open_ packages were used (either MIT, BSD-2, or BSD-
 If you found this project useful, please, consider citing it in your research article:
 
 ```
-@software{andre_pedersen_2023_7603053,
+@software{andre_pedersen_2023_7701510,
   author       = {André Pedersen and Ute Spiske and Javier Pérez de Frutos},
-  title        = {andreped/DSS: v0.1.3},
-  month        = feb,
+  title        = {andreped/DSS: v0.2.0},
+  month        = mar,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v0.1.3},
-  doi          = {10.5281/zenodo.7603053},
-  url          = {https://doi.org/10.5281/zenodo.7603053}
+  version      = {v0.2.0},
+  doi          = {10.5281/zenodo.7701510},
+  url          = {https://doi.org/10.5281/zenodo.7701510}
 }
 ```
 
