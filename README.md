@@ -2,7 +2,7 @@
     <img src="assets/sketch.png" alt="drawing" width="400">
 </div>
 <div align="center">
-<h1 align="center">DSS: Deep Sensors Systems</h1>
+<h1 align="center">DSS: Deep Sensor Systems</h1>
 <h3 align="center">From training and deployment of ViTs to development of real-time cross-platform mobile apps</h3>
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
