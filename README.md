@@ -79,7 +79,7 @@ python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/
 A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
 
 <p align="center" width="100%">
-<img src="sw_app/assets/HomeScreen.png" width="20%" height="18%"> <img src="sw_app/assets/Prediction.png" width="20%" height="18%"> <img src="sw_app/assets/ChartWithFPS.png" width="18%" height="20%">
+<img src="sw_app/assets/HomeScreen.png" width="18%" height="20%"> <img src="sw_app/assets/Prediction.png" width="18%" height="20%"> <img src="sw_app/assets/ChartWithFPS.png" width="18%" height="20%">
 <img src="sw_app/assets/Recording.png" width="18%" height="20%"> <img src="sw_app/assets/Database.png" width="18%" height="20%">
 </p>
 
