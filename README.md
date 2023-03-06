@@ -10,7 +10,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7568040.svg)](https://doi.org/10.5281/zenodo.7568040)
 [![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
 
-**DSS** was developed by SINTEF Health with aim to integrate AIs into sensor systems.
+**DSS** was developed by SINTEF Medical Image Analysis with aim to integrate AIs into sensor systems.
 </div>
 
 This project serves as a demonstration on how to do it, and does not claim to be a generic framework.
