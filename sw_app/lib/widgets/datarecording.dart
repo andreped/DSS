@@ -202,6 +202,8 @@ class _DataRecordingPageState extends State<DataRecordingPage> {
   void reset_variables(listId) {
 
     save_csv(sensor_data_list, listId);
+
+    recordingList.clear();
     accelSubscription.cancel();
     rotSubscription.cancel();
     gyroSubscription.cancel();
