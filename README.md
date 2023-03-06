@@ -10,8 +10,10 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7603053.svg)](https://doi.org/10.5281/zenodo.7603053)
 [![codecov](https://codecov.io/gh/andreped/DSS/branch/main/graph/badge.svg?token=Nf2GKXXYXE)](https://codecov.io/gh/andreped/DSS)
 
-**DSS** was developed by SINTEF Health with aim to integrate AIs into smart sensor systems.
+**DSS** was developed by SINTEF Health with aim to integrate AIs into sensor systems.
 </div>
+
+This project serves as a demonstration on how to do it, and does not claim to be a generic framework.
 
 Below there are described some of the key features of this project, but to see what else is possible, please, see [the wiki](https://github.com/andreped/DSS/wiki).
 
