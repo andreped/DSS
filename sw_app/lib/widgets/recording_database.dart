@@ -1,6 +1,9 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sw_app/widgets/recording_model.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+
 
 class RecordingDatabase {
   static late final RecordingDatabase instance = RecordingDatabase._init();
@@ -28,15 +31,6 @@ class RecordingDatabase {
     final textType = 'TEXT  NOT NULL ';
     final integerType = 'INTEGER NOT NULL ';
 
-    await db.execute('''
-CREATE TABLE $tableRecordings ( 
-  ${RecordingFields.id} $idType, 
-  ${RecordingFields.listId} $integerType,
-  ${RecordingFields.timeStamp} $textType,
-  ${RecordingFields.xAccel} $integerType,
-  ${RecordingFields.yAccel} $integerType,
-  ${RecordingFields.zAccel} $integerType
-  )''');
 
     await db.execute('''
  CREATE TABLE $tableRecordingsList ( 
@@ -46,12 +40,6 @@ CREATE TABLE $tableRecordings (
   )''');
   }
 
-  Future<Recording> create(Recording recording) async {
-    final db = await instance.database;
-
-    final id = await db.insert(tableRecordings, recording.toJson());
-    return recording.copy(id: id);
-  }
 
   Future<RecordingList> createList(RecordingList recordingList) async {
     final db = await instance.database;
@@ -79,25 +67,6 @@ CREATE TABLE $tableRecordings (
       where: "${RecordingListFields.id} = ?",
       whereArgs: [last.id],
     );
-  }
-
-  Future<List<Recording>> readRecording(int id) async {
-    final db = await instance.database;
-    final orderBy = '${RecordingFields.timeStamp} ASC';
-
-    final maps = await db.query(
-      tableRecordings,
-      columns: RecordingFields.values,
-      orderBy: orderBy,
-      where: '${RecordingFields.listId} = ?',
-      whereArgs: [id],
-    );
-
-    if (maps.isNotEmpty) {
-      return maps.map((json) => Recording.fromJson(json)).toList();
-    } else {
-      throw Exception('No recording with ID $id found');
-    }
   }
 
   Future<List<RecordingList>?> readRecordingList() async {
@@ -132,11 +101,12 @@ CREATE TABLE $tableRecordings (
       whereArgs: [id],
     );
 
-    await db.delete(
-      tableRecordings,
-      where: '${RecordingFields.listId} = ?',
-      whereArgs: [id],
-    );
+    Directory? appDocDir = await getExternalStorageDirectory();
+    var appDocPath = appDocDir?.path;
+
+
+    File f = File("$appDocPath/$id.csv");
+    await f.delete();
   }
 
   Future close() async {
@@ -149,6 +119,12 @@ CREATE TABLE $tableRecordings (
     var db = await instance.database;
 
     await db.delete(tableRecordingsList);
-    await db.delete(tableRecordings);
+    Directory? appDocDir = await getExternalStorageDirectory();
+
+    appDocDir?.list(recursive: true).listen((file) {
+      if (file is File && file.path.endsWith('.csv')) file.deleteSync();
+    });
+
+
   }
 }

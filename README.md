@@ -81,6 +81,7 @@ Best model reached a macro-averaged F1 score of 99.66 % on the validation set, a
 
 </details>
 
+
 <details>
 <summary>
 
@@ -130,10 +131,11 @@ python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/
 
 ### Model integration and testing in app</summary>
 
-A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time:
+A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time. The data can also be stored and deleted locally.
 
 <p align="center" width="100%">
-<img src="sw_app/assets/app_snapshot_data.jpg" width="20%" height="20%"> <img src="sw_app/assets/app_snapshot_charts.jpg" width="20%" height="20%">
+<img src="sw_app/assets/HomeScreen.jpg" width="18%" height="20%"> <img src="sw_app/assets/Prediction.jpg" width="18%" height="20%"> <img src="sw_app/assets/ChartWithFPS.jpg" width="18%" height="20%">
+<img src="sw_app/assets/Recording.jpg" width="18%" height="20%"> <img src="sw_app/assets/Database.jpg" width="18%" height="20%">
 </p>
 
 To use the app, you need an Android phone and have developer mode enabled (see [here](https://developer.android.com/studio/debug/dev-options) for how to enable it). Then simply download the APK from [here](https://github.com/andreped/DSS/releases/tag/v0.1.0), double-click to install, and use the app as you normally would.
@@ -153,6 +155,8 @@ For the app, the following _open_ packages were used (either MIT, BSD-2, or BSD-
 * [wakelock](https://pub.dev/packages/wakelock)
 * [sqflite](https://pub.dev/packages/sqflite)
 * [intl](https://pub.dev/packages/intl)
+* [csv](https://pub.dev/packages/csv)
+* [path_provider](https://pub.dev/packages/path_provider)
 
 ## How to cite
 
