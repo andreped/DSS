@@ -1,11 +1,11 @@
+from datetime import datetime, date
 import tensorflow as tf
 import tensorflow_datasets as tfds
 import tensorflow_addons as tfa
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping, TensorBoard
-from .models import get_model
 import numpy as np
+from .models import get_model
 from .losses import categorical_focal_loss
-from datetime import datetime, date
 
 
 class Trainer:
@@ -140,5 +140,3 @@ class Trainer:
     def eval(self, model_name):
         dataset = tf.data.Dataset.load(self.dataset_path + "test/")
         print(dataset)
-
-
