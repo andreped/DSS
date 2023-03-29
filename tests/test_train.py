@@ -1,5 +1,5 @@
-from main import main
 import sys
+from main import main
 
 
 def test_train(monkeypatch):
