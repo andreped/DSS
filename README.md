@@ -40,6 +40,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+The following dependencies will be installed:
+
+* `pandas~=1.5.3`
+* `tensorflow~=2.12.0`
+* `tensorflow-addons~=0.19.0`
+* `tensorflow-datasets~=4.8.3`
+
 Tested with Python 3.7.9 on Win10, macOS, and Ubuntu Linux operating systems. Also tested with Python 3.10.4 on GitHub Codespaces.
 
 Note that to activate the virtual environment on Windows instead run `./venv/Scripts/activate`.
