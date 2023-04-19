@@ -38,9 +38,6 @@ class Trainer:
                                                 mode='CONSTANT', constant_values=value),
                                          y))
 
-    def save_datasets(self, x, name):
-        tf.data.Dataset.save(x, self.dataset_path + name + "/")
-
     def get_datetime(self):
         curr_date = "".join(date.today().strftime("%d/%m").split("/")) + date.today().strftime("%Y")[2:]
         curr_time = "".join(str(datetime.now()).split(" ")[1].split(".")[0].split(":"))
@@ -73,11 +70,6 @@ class Trainer:
         train = self.pad(train)
         val = self.pad(val)
         test = self.pad(test)
-
-        # save datasets on disk  @TODO: This takes extremely long!
-        #self.save_datasets(train, "train")
-        #self.save_datasets(val, "val")
-        #self.save_datasets(test, "test")
 
         train = train.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
         val = val.shuffle(buffer_size=4).batch(self.ret.batch_size).prefetch(1).repeat(-1)
