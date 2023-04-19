@@ -133,10 +133,3 @@ class Trainer:
             callbacks=[save_best, history, early, tb_logger],
             verbose=1,
         )
-
-    def predict(self, x):
-        pass
-
-    def eval(self, model_name):
-        dataset = tf.data.Dataset.load(self.dataset_path + "test/")
-        print(dataset)

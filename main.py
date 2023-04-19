@@ -34,8 +34,7 @@ def main():
         from dss.train import Trainer
         Trainer(args).fit()
     elif args.task == "deploy":
-        from dss.eval import Evaluator
-        Evaluator(args)
+        raise NotImplementedError
     else:
         raise ValueError("Unknown task specified. Available tasks include {'train', 'eval'}.")
 
