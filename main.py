@@ -17,7 +17,7 @@ def main():
                         help="number of epochs to train.")
     parser.add_argument('-pa', '--patience', type=int, nargs='?', default=10,
                         help="number of epochs to wait (patience) for early stopping.")
-    parser.add_argument('-a', '--arch', type=str, nargs='?', default="vit",
+    parser.add_argument('-a', '--arch', type=str, nargs='?', default="rnn",
                         help="which architecture to use.")
     parser.add_argument('-ls', '--loss', type=str, nargs='?', default="cce",
                         help="which loss function to use. Supportes losses are: {'cce', 'focal'}.")
