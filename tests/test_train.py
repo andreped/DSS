@@ -10,5 +10,5 @@ def test_rnn_train(monkeypatch):
 
 def test_train(monkeypatch):
     with monkeypatch.context() as m:
-        m.setattr(sys, 'argv', ['main', '-ep', '2', '-arch', 'vit', '-ls', 'focal'])
+        m.setattr(sys, 'argv', ['main', '-ep', '2', '-a', 'vit', '-ls', 'focal'])
         main()
