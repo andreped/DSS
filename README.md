@@ -17,7 +17,7 @@ This project serves as a demonstration on how to do it, and does not claim to be
 
 Below there are described some of the key features of this project, but to see what else is possible, please, see [the wiki](https://github.com/andreped/DSS/wiki).
 
-## Continuous integration
+## [Continuous integration](https://github.com/andreped/DSS#continuous-integration)
 
 | Build Type | Status |
 | - | - |
@@ -26,12 +26,12 @@ Below there are described some of the key features of this project, but to see w
 | **Build APK** | ![CI](https://github.com/andreped/DSS/workflows/Build%20APK/badge.svg) |
 
 
-## How to your train own model?
+## [How to your train own model?](https://github.com/andreped/DSS#how-to-train-your-own-model)
 
 <details>
 <summary>
 
-### Setup</summary>
+### [Setup](https://github.com/andreped/DSS#setup)</summary>
 
 When using this framework, it is a good idea to setup a virtual environment:
 ```
@@ -57,7 +57,7 @@ Note that to activate the virtual environment on Windows instead run `./venv/Scr
 <details>
 <summary>
 
-### Usage</summary>
+### [Usage](https://github.com/andreped/DSS#usage)</summary>
 
 To train a model, simply run:
 ```
@@ -72,7 +72,7 @@ The script supports multiple arguments. To see supported arguments, run `python 
 <details open>
 <summary>
 
-### Training history</summary>
+### [Training history](https://github.com/andreped/DSS#training-history)</summary>
 
 To visualize training history, use TensorBoard (with example):
 ```
@@ -94,9 +94,9 @@ Best model reached a macro-averaged F1 score of 99.66 % on the validation set, a
 <details>
 <summary>
 
-### Available datasets</summary>
+### [Available datasets](https://github.com/andreped/DSS#available-datasets)</summary>
 
-#### SmartWatch Gestures
+#### [SmartWatch Gestures](https://github.com/andreped/DSS#smartwatch-gestures)
 
 The current data used to train the AI model is the SmartWatch Gestures dataset,
 which is available in [tensorflow-datasets](https://www.tensorflow.org/datasets/catalog/smartwatch_gestures). The dataset has the
@@ -119,12 +119,12 @@ FeaturesDict({
 </details>
 
 
-## How to test the model in a mobile app?
+## [How to test the model in a mobile app?](https://github.com/andreped/DSS#how-to-test-the-model-in-a-mobile-app)
 
 <details>
 <summary>
 
-### Converting model to TF-Lite</summary>
+### [Converting model to TF-Lite](https://github.com/andreped/DSS#converting-model-to-tf-lite)</summary>
 
 In order to be able to use the trained model in a mobile app, it is necessary to convert the model to a compatible format. TensorFlow Lite is an inference engine tailored for mobile devices. To convert the model to TF-Lite, simply run this command:
 
@@ -138,7 +138,7 @@ python dss/keras2tflite.py -m /path/to/pretrained/saved_model/ -o /path/to/save/
 <details open>
 <summary>
 
-### Model integration and testing in app</summary>
+### [Model integration and testing in app](https://github.com/andreped/DSS#model-integration-and-testing-in-app)</summary>
 
 A simple Mobile app was developed in Flutter, which demonstrates the AI in action using the accelerometer data from the mobile phone in real time. The data can also be stored and deleted locally.
 
@@ -153,7 +153,7 @@ Info on how the mobile app was developed (and how to make your own app), can be 
 
 </details>
 
-## Acknowledgements
+## [Acknowledgements](https://github.com/andreped/DSS#acknowledgements)
 
 The training framework was mainly developed using [Keras](https://github.com/keras-team/keras) with [TensorFlow](https://github.com/tensorflow/tensorflow) backend.
 
@@ -167,7 +167,7 @@ For the app, the following _open_ packages were used (either MIT, BSD-2, or BSD-
 * [csv](https://pub.dev/packages/csv)
 * [path_provider](https://pub.dev/packages/path_provider)
 
-## How to cite
+## [How to cite?](https://github.com/andreped/DSS#how-to-cite)
 
 If you found this project useful, please, consider citing it in your research article:
 
